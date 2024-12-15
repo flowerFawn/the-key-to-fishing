@@ -8,6 +8,9 @@ var fish_weight: float = 0.0
 func _ready() -> void:
 	fish = Game.caught_fish
 	fish["caught"] = fish["caught"] + 1
+	fish_weight = fish["weight"] * Game.last_multiplier
+	if fish["biggest_catch"] < fish_weight:
+		fish["biggest_catch"] = snapped(fish_weight, 0.01)
 	fish_list.append(fish)
 	fish_file = FileAccess.open("res://fish_lists/%s.json" % Game.difficulty, FileAccess.WRITE)
 	fish_file.store_string(JSON.stringify(fish_list, "\t"))
@@ -15,7 +18,7 @@ func _ready() -> void:
 	$CanvasLayer/Control/Description.text = fish["desc"]
 	$CanvasLayer/Control/Name.text = fish["name"]
 	$CanvasLayer/Control/VBoxContainer/Caught.text = "caught: %s" % fish["caught"]
-	fish_weight = fish["weight"] * Game.last_multiplier
+
 	$CanvasLayer/Control/VBoxContainer/Weight.text = "weight: %slbs" % snapped(fish_weight, 0.01)
 	$CanvasLayer/Control/VBoxContainer/Size.text = "size: %s" % fish["size"]
 	$CanvasLayer/Control/Next.grab_focus()
