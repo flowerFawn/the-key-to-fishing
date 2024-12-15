@@ -6,7 +6,7 @@ var fish_file: FileAccess
 var fish_weight: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fish = fish_list.pop_at(random.randi_range(0,len(fish_list) - 1))
+	fish = Game.caught_fish
 	fish["caught"] = fish["caught"] + 1
 	fish_list.append(fish)
 	fish_file = FileAccess.open("res://fish_lists/%s.json" % Game.difficulty, FileAccess.WRITE)
@@ -14,9 +14,10 @@ func _ready() -> void:
 	fish_file.close()
 	$CanvasLayer/Control/Description.text = fish["desc"]
 	$CanvasLayer/Control/Name.text = fish["name"]
-	$CanvasLayer/Control/Caught.text = "caught: %s" % fish["caught"]
+	$CanvasLayer/Control/VBoxContainer/Caught.text = "caught: %s" % fish["caught"]
 	fish_weight = fish["weight"] * Game.last_multiplier
-	$CanvasLayer/Control/Weight.text = "weight: %slbs" % snapped(fish_weight, 0.01)
+	$CanvasLayer/Control/VBoxContainer/Weight.text = "weight: %slbs" % snapped(fish_weight, 0.01)
+	$CanvasLayer/Control/VBoxContainer/Size.text = fish["size"]
 	$CanvasLayer/Control/Next.grab_focus()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -46,30 +46,6 @@ offset_bottom = -20.0
 theme_override_font_sizes/font_size = 150
 text = "Fishie"
 
-[node name="Caught" type="Label" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.533
-anchor_top = 0.346
-anchor_right = 1.0
-anchor_bottom = 0.513
-offset_left = -5.36011
-offset_top = 0.319977
-offset_bottom = -0.0400391
-text = "Caught: 0"
-
-[node name="Weight" type="Label" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.53
-anchor_top = 0.116
-anchor_right = 1.0
-anchor_bottom = 0.282
-offset_left = 0.399963
-offset_top = -0.280006
-offset_bottom = 0.440002
-text = "Weight: 0"
-
 [node name="Next" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
 offset_top = 849.0
@@ -82,5 +58,47 @@ script = ExtResource("3_cwf8j")
 position = Vector2(394, 429)
 scale = Vector2(2, 2)
 texture = ExtResource("3_8bf20")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 435.0
+offset_top = -569.0
+offset_right = 1771.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.53
+anchor_top = 0.147
+anchor_right = 0.996
+anchor_bottom = 0.606
+offset_left = -0.600037
+offset_top = 0.240005
+offset_right = 0.679932
+offset_bottom = -0.47998
+alignment = 1
+
+[node name="Size" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Weight: 0"
+
+[node name="Caught" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Caught: 0"
+
+[node name="Weight" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Weight: 0"
 
 [connection signal="pressed" from="CanvasLayer/Control/Next" to="CanvasLayer/Control/Next" method="load_new_scene" binds= ["res://scenes/retry.tscn"]]
