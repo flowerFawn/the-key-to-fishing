@@ -22,13 +22,6 @@
 	},
 	{
 		"caught": 0,
-		"desc": "This gnome is an American public intellectual, linguist, philosopher, cognitive scientist, historian, social critic, and political activist. He also went to space one time!",
-		"image": "res://assets/fish_images/gnome.png",
-		"name": "Gnome",
-		"weight": 4
-	},
-	{
-		"caught": 0,
 		"desc": "The Carp is the queen of rivers; a stately, a good, and a very subtle fish; that was not at first bred, nor hath been long in England, but is now naturalised. Bunch of carp if you ask me.",
 		"image": "res://assets/fish_images/carp.png",
 		"name": "Carp",
@@ -54,5 +47,12 @@
 		"image": "res://assets/fish_images/xenacanthida.png",
 		"name": "Xenacanthida",
 		"weight": 300
+	},
+	{
+		"caught": 2,
+		"desc": "This gnome is an American public intellectual, linguist, philosopher, cognitive scientist, historian, social critic, and political activist. He also went to space one time!",
+		"image": "res://assets/fish_images/gnome.png",
+		"name": "Gnome",
+		"weight": 4
 	}
 ]

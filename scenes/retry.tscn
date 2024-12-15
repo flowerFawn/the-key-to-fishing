@@ -52,3 +52,4 @@ text = "No"
 script = ExtResource("2_6q5ie")
 
 [connection signal="pressed" from="CanvasLayer/Control/Again" to="CanvasLayer/Control/Again" method="load_new_scene" binds= ["res://scenes/typing_scene.tscn"]]
+[connection signal="pressed" from="CanvasLayer/Control/Back" to="CanvasLayer/Control/Back" method="load_new_scene" binds= ["res://scenes/difficulty_select.tscn"]]
