@@ -40,6 +40,7 @@ offset_right = 575.0
 offset_bottom = 487.0
 text = "Yes!"
 script = ExtResource("2_6q5ie")
+grabs_focus = true
 
 [node name="Back" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0

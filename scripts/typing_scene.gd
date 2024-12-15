@@ -63,6 +63,7 @@ func _on_input_box_text_changed(new_text: String) -> void:
 		Game.last_multiplier = total_multiplier
 		$CanvasLayer/Control/ToFishView.disabled = false
 		$CanvasLayer/Control/ToFishView.visible = true
+		$CanvasLayer/Control/ToFishView.grab_focus()
 
 
 func time_finished() -> void:
