@@ -17,7 +17,7 @@ func _ready() -> void:
 	$CanvasLayer/Control/Name.text = fish["name"]
 	$CanvasLayer/Control/Caught.text = "caught: %s" % fish["caught"]
 	fish_weight = fish["weight"] * Game.last_multiplier
-	$CanvasLayer/Control/Weight.text = "weight: %s" % fish_weight
+	$CanvasLayer/Control/Weight.text = "weight: %slbs" % snapped(fish_weight, 0.01)
 	print(fish)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

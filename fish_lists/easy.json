@@ -34,35 +34,6 @@
 		"name": "Carp",
 		"weight": 26
 	},
-		{
-		"caught": 0,
-		"desc": "Not a kbity qwq. Kinda like catgirls but less of them are transgender.",
-		"image": "res://assets/fish_images/catfish.png",
-		"name": "Catfish",
-		"weight": 100
-	},
-	{
-		"caught": 0,
-		"desc": "Probably harder to bullfight underwater. Owie.",
-		"image": "res://assets/fish_images/bullshark.png",
-		"name": "Bull Shark",
-		"weight": 200
-	},
-	{
-		"caught": 0,
-		"desc": "Looks very cute for a dinosaur, would make a great pet. Other than, being extinct.",
-		"image": "res://assets/fish_images/xenacanthida.png",
-		"name": "Xenacanthida",
-		"weight": 300
-	}
-][
-	{
-		"caught": 0,
-		"desc": "Erm, these shouldn't be in a pond!",
-		"image": "res://assets/fish_images/sardine.png",
-		"name": "Sardine",
-		"weight": 0.2
-	},
 	{
 		"caught": 0,
 		"desc": "Not a kbity qwq. Kinda like catgirls but less of them are transgender.",
@@ -72,44 +43,16 @@
 	},
 	{
 		"caught": 0,
-		"desc": "doesn't work as well as a weapon as I had hoped qwq.",
-		"image": "res://assets/fish_images/pike.png",
-		"name": "Pike",
-		"weight": 40
-	},
-	{
-		"caught": 0,
-		"desc": "Probably harder to bullfight underwater. Owie.",
-		"image": "res://assets/fish_images/bullshark.png",
-		"name": "Bull Shark",
-		"weight": 200
-	},
-	{
-		"caught": 0,
-		"desc": "This gnome is an American public intellectual, linguist, philosopher, cognitive scientist, historian, social critic, and political activist. He also went to space one time!",
-		"image": "res://assets/fish_images/gnome.png",
-		"name": "Gnome",
-		"weight": 4
-	},
-	{
-		"caught": 0,
-		"desc": "The Carp is the queen of rivers; a stately, a good, and a very subtle fish; that was not at first bred, nor hath been long in England, but is now naturalised. Bunch of carp if you ask me.",
-		"image": "res://assets/fish_images/carp.png",
-		"name": "Carp",
-		"weight": 26
-	},
-	{
-		"caught": 0,
 		"desc": "Looks very cute for a dinosaur, would make a great pet. Other than, being extinct.",
 		"image": "res://assets/fish_images/xenacanthida.png",
 		"name": "Xenacanthida",
 		"weight": 300
 	},
 	{
-		"caught": 0,
-		"desc": "The classic fishing-junk.",
-		"image": "res://assets/fish_images/tin can.png",
-		"name": "Rusty Tin Can",
-		"weight": 0.3
+		"caught": 1,
+		"desc": "Probably harder to bullfight underwater. Owie.",
+		"image": "res://assets/fish_images/bullshark.png",
+		"name": "Bull Shark",
+		"weight": 200
 	}
 ]
