@@ -60,10 +60,17 @@ func _on_input_box_text_changed(new_text: String) -> void:
 		var time_multiplier = time_left_percentage + 0.2
 		var length_multiplier = (len(goal_word) / 100) + 1
 		var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
-		
+		Game.last_multiplier = total_multiplier
+		$CanvasLayer/Control/ToFishView.disabled = false
+		$CanvasLayer/Control/ToFishView.visible = true
 
 
 func time_finished() -> void:
 	if state == "typing":
 		state = "failed"
 		$CanvasLayer/Control/WordDisplay.text = "The fish got away!"
+		$CanvasLayer/Control/ToRetry.disabled = false
+		$CanvasLayer/Control/ToRetry.visible = true
+
+func load_to_scene(path):
+	get_tree().change_scene_to_file(path)
