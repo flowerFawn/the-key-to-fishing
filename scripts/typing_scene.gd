@@ -1,6 +1,6 @@
 extends Node2D
-var goal_word: String = ""
 var random = RandomNumberGenerator.new()
+var goal_word: String = ""
 var state: String = "starting"
 var word_list: Array = load("res://word_lists/%s.json" % Game.difficulty).data
 # Called when the node enters the scene tree for the first time.

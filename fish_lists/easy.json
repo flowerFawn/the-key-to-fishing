@@ -1,3 +1,9 @@
 [
-{"name":"sardine", "weight":0.2, "desc":"Erm, these shouldn't be in a pond!", "image":"res://assets/fish_images/sardine.png"}
+	{
+		"caught": 4,
+		"desc": "Erm, these shouldn't be in a pond!",
+		"image": "res://assets/fish_images/sardine.png",
+		"name": "sardine",
+		"weight": 0.2
+	}
 ]
