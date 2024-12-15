@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="The Key to Fishing"
-run/main_scene="res://typing_scene.tscn"
+run/main_scene="res://scenes/typing_scene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://game.gd"
+Game="*res://scripts/game.gd"
 
 [display]
 
