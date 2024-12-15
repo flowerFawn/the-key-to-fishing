@@ -23,7 +23,8 @@ func waiting_text_dot_cycle():
 	if state == "waiting":
 		$CanvasLayer/Control/WordDisplay.text = "Fishing for fishes"
 
-func start_fishing():
+
+func start_waiting():
 	#starts the timer to give a wait time till the text appears
 	state = "waiting"
 	$CanvasLayer/Control/CastButton.disabled = true
