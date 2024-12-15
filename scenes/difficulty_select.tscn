@@ -57,6 +57,20 @@ offset_right = -0.440063
 offset_bottom = 0.519989
 text = "Hard"
 
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.001
+anchor_top = 0.81
+anchor_right = 0.171
+anchor_bottom = 1.005
+offset_left = -0.0799999
+offset_top = 0.199951
+offset_right = 0.679993
+offset_bottom = -0.400024
+text = "Back"
+
 [connection signal="pressed" from="CanvasLayer/Control/Easy" to="." method="load_fishing_with_difficulty_change" binds= ["easy"]]
 [connection signal="pressed" from="CanvasLayer/Control/Medium" to="." method="load_fishing_with_difficulty_change" binds= ["medium"]]
 [connection signal="pressed" from="CanvasLayer/Control/Hard" to="." method="load_fishing_with_difficulty_change" binds= ["hard"]]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="main_menu"]

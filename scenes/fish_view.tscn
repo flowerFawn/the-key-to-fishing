@@ -59,20 +59,6 @@ position = Vector2(394, 429)
 scale = Vector2(2, 2)
 texture = ExtResource("3_8bf20")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 435.0
-offset_top = -569.0
-offset_right = 1771.0
-offset_bottom = 394.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1

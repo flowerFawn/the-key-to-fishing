@@ -15,4 +15,4 @@ func load_fishing_with_difficulty_change(difficulty: String):
 	get_tree().change_scene_to_file("res://scenes/typing_scene.tscn")
 	
 func main_menu():
-	pass
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

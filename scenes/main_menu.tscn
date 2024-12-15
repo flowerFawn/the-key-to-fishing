@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw4wbbwbaci2f"]
+
+[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_4bnrc"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4bnrc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.094
+anchor_right = 1.0
+anchor_bottom = 0.774
+offset_top = 0.479996
+offset_bottom = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 100
+text = "The Key to Fishing!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "aaa"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "aaa"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "aaa"
