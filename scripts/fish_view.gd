@@ -17,7 +17,7 @@ func _ready() -> void:
 	$CanvasLayer/Control/VBoxContainer/Caught.text = "caught: %s" % fish["caught"]
 	fish_weight = fish["weight"] * Game.last_multiplier
 	$CanvasLayer/Control/VBoxContainer/Weight.text = "weight: %slbs" % snapped(fish_weight, 0.01)
-	$CanvasLayer/Control/VBoxContainer/Size.text = fish["size"]
+	$CanvasLayer/Control/VBoxContainer/Size.text = "size: %s" % fish["size"]
 	$CanvasLayer/Control/Next.grab_focus()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
