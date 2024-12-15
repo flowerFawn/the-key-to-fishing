@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_8rglj"]
 
-[node name="Node2D" type="Node2D"]
+[node name="FishView" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
