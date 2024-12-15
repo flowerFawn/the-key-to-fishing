@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://qjmal2ehrfr1"]
+
+[ext_resource type="FontFile" uid="uid://ci6t1x1pubjhm" path="res://assets/rainyhearts.ttf" id="1_nb1hy"]
+
+[resource]
+default_font = ExtResource("1_nb1hy")
+Label/font_sizes/font_size = 60
+LineEdit/font_sizes/font_size = 150
+TextEdit/font_sizes/font_size = 150
