@@ -2,10 +2,10 @@ extends Node2D
 var goal_word: String = ""
 var random = RandomNumberGenerator.new()
 var state: String = "starting"
-var word_list: Array = []
+var word_list: Array = load("res://word_lists/%s.json" % Game.difficulty).data
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$CanvasLayer/Control/CastButton.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,7 +35,7 @@ func start_waiting():
 
 
 func get_word():
-	return "lantern"
+	return word_list.pick_random()
 	
 func start_typing():
 	state = "typing"
@@ -52,12 +52,15 @@ func _on_input_box_text_changed(new_text: String) -> void:
 	#checks if the most recent version of the word is the goal word, so it can be 
 	if new_text.to_lower() == goal_word and state == "typing":
 		$TimeLeft.stop()
+		$CanvasLayer/Control/WordDisplay.text = "You caught it!"
 		state = "success"
 		print(new_text)
 		#to be used to multiply weight
 		var time_left_percentage = $TimeLeft.time_left / 5
 		var time_multiplier = time_left_percentage + 0.2
-		$CanvasLayer/Control/WordDisplay.text = "You caught it!"
+		var length_multiplier = (len(goal_word) / 100) + 1
+		var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
+		
 
 
 func time_finished() -> void:
