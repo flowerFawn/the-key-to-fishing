@@ -4,27 +4,29 @@ var random = RandomNumberGenerator.new()
 var state: String = "starting"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#pass # Replace with function body.
-	start_fishing()
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if state == "waiting" and $CanvasLayer/Control/WordDisplay.text == "Fishing for fishes":
-		for _a in range(3):
-			if state == "waiting":
-				$CanvasLayer/Control/WordDisplay.text = $CanvasLayer/Control/WordDisplay.text + "."
-				await get_tree().create_timer(0.5).timeout
-			else:
-				break
-		await get_tree().create_timer(0.5).timeout
+		waiting_text_dot_cycle()
+
+func waiting_text_dot_cycle():
+	for _a in range(3):
 		if state == "waiting":
-			$CanvasLayer/Control/WordDisplay.text = "Fishing for fishes"
-
-
+			$CanvasLayer/Control/WordDisplay.text = $CanvasLayer/Control/WordDisplay.text + "."
+			await get_tree().create_timer(0.5).timeout
+		else:
+			break
+	await get_tree().create_timer(0.5).timeout
+	if state == "waiting":
+		$CanvasLayer/Control/WordDisplay.text = "Fishing for fishes"
 
 func start_fishing():
 	#starts the timer to give a wait time till the text appears
 	state = "waiting"
+	$CanvasLayer/Control/CastButton.disabled = true
 	$CanvasLayer/Control/WordDisplay.text = "Fishing for fishes"
 	$TimeToBob.wait_time = random.randf_range(2.0, 5.0)
 	$TimeToBob.start()

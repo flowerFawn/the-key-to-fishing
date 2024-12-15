@@ -19,14 +19,14 @@ metadata/_edit_use_anchors_ = true
 [node name="InputBox" type="LineEdit" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.051
-anchor_top = 0.375
-anchor_right = 0.949
-anchor_bottom = 0.625
-offset_left = 0.0799942
-offset_top = 0.499969
-offset_right = -0.0800781
-offset_bottom = -0.5
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -862.0
+offset_top = -134.5
+offset_right = 862.0
+offset_bottom = 134.5
 grow_horizontal = 2
 grow_vertical = 2
 editable = false
@@ -34,27 +34,29 @@ editable = false
 [node name="WordDisplay" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.142
-anchor_right = 0.858
-anchor_bottom = 0.087
-offset_left = 0.359985
-offset_right = 0.639893
-offset_bottom = 0.0399933
+anchor_left = 0.5
+anchor_top = 0.044
+anchor_right = 0.5
+anchor_bottom = 0.044
+offset_left = -687.0
+offset_top = -47.52
+offset_right = 688.0
+offset_bottom = 46.48
 grow_horizontal = 2
 text = "Ready to cast your rod?"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/Control"]
+[node name="CastButton" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.377
-anchor_top = 0.134
-anchor_right = 0.624
-anchor_bottom = 0.284
-offset_left = -0.840027
-offset_top = 0.279999
-offset_right = -0.0800781
-offset_bottom = 0.279999
+anchor_left = 0.5
+anchor_top = 0.117
+anchor_right = 0.5
+anchor_bottom = 0.117
+offset_left = -182.5
+offset_top = -53.36
+offset_right = 182.5
+offset_bottom = 52.64
 grow_horizontal = 2
 text = "Cast!"
 
@@ -67,5 +69,6 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="text_changed" from="CanvasLayer/Control/InputBox" to="." method="_on_input_box_text_changed"]
+[connection signal="pressed" from="CanvasLayer/Control/CastButton" to="." method="start_fishing"]
 [connection signal="timeout" from="TimeLeft" to="." method="time_finished"]
 [connection signal="timeout" from="TimeToBob" to="." method="start_typing"]
