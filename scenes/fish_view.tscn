@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcsn1w72ecel1"]
+[gd_scene load_steps=5 format=3 uid="uid://dcsn1w72ecel1"]
 
 [ext_resource type="Script" path="res://scripts/fish_view.gd" id="1_tpi2d"]
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="2_01rl1"]
 [ext_resource type="Texture2D" uid="uid://d1ack4ko6yihv" path="res://assets/fish_images/placeholder.png" id="3_8bf20"]
+[ext_resource type="Script" path="res://scripts/button_link.gd" id="3_cwf8j"]
 
 [node name="FishView" type="Node2D"]
 script = ExtResource("1_tpi2d")
@@ -69,7 +70,17 @@ offset_top = -0.280006
 offset_bottom = 0.440002
 text = "Weight: 0"
 
+[node name="Next" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_top = 849.0
+offset_right = 736.0
+offset_bottom = 1080.0
+text = "Throw it back in!"
+script = ExtResource("3_cwf8j")
+
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
 position = Vector2(394, 429)
 scale = Vector2(2, 2)
 texture = ExtResource("3_8bf20")
+
+[connection signal="pressed" from="CanvasLayer/Control/Next" to="CanvasLayer/Control/Next" method="load_new_scene" binds= ["res://scenes/retry.tscn"]]

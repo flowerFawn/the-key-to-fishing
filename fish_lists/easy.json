@@ -43,16 +43,16 @@
 	},
 	{
 		"caught": 0,
-		"desc": "Looks very cute for a dinosaur, would make a great pet. Other than, being extinct.",
-		"image": "res://assets/fish_images/xenacanthida.png",
-		"name": "Xenacanthida",
-		"weight": 300
-	},
-	{
-		"caught": 1,
 		"desc": "Probably harder to bullfight underwater. Owie.",
 		"image": "res://assets/fish_images/bullshark.png",
 		"name": "Bull Shark",
 		"weight": 200
+	},
+	{
+		"caught": 0,
+		"desc": "Looks very cute for a dinosaur, would make a great pet. Other than, being extinct.",
+		"image": "res://assets/fish_images/xenacanthida.png",
+		"name": "Xenacanthida",
+		"weight": 300
 	}
 ]

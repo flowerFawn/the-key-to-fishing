@@ -71,6 +71,3 @@ func time_finished() -> void:
 		$CanvasLayer/Control/WordDisplay.text = "The fish got away!"
 		$CanvasLayer/Control/ToRetry.disabled = false
 		$CanvasLayer/Control/ToRetry.visible = true
-
-func load_to_scene(path):
-	get_tree().change_scene_to_file(path)

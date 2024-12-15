@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bndkaxcgtomh3"]
+[gd_scene load_steps=4 format=3 uid="uid://bndkaxcgtomh3"]
 
 [ext_resource type="Script" path="res://scripts/typing_scene.gd" id="1_4430f"]
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="2_yxxxw"]
+[ext_resource type="Script" path="res://scripts/button_link.gd" id="3_7a13b"]
 
 [node name="TypingScene" type="Node2D"]
 script = ExtResource("1_4430f")
@@ -78,6 +79,7 @@ grow_horizontal = 2
 grow_vertical = 0
 disabled = true
 text = "What is it?"
+script = ExtResource("3_7a13b")
 
 [node name="ToRetry" type="Button" parent="CanvasLayer/Control"]
 visible = false
@@ -95,6 +97,7 @@ grow_horizontal = 2
 grow_vertical = 0
 disabled = true
 text = "Maybe next time!"
+script = ExtResource("3_7a13b")
 
 [node name="TimeLeft" type="Timer" parent="."]
 wait_time = 5.0
@@ -106,6 +109,7 @@ one_shot = true
 
 [connection signal="text_changed" from="CanvasLayer/Control/InputBox" to="." method="_on_input_box_text_changed"]
 [connection signal="pressed" from="CanvasLayer/Control/CastButton" to="." method="start_waiting"]
-[connection signal="pressed" from="CanvasLayer/Control/ToFishView" to="." method="load_to_scene" binds= ["res://scenes/fish_view.tscn"]]
+[connection signal="pressed" from="CanvasLayer/Control/ToFishView" to="CanvasLayer/Control/ToFishView" method="load_new_scene" binds= ["res://scenes/fish_view.tscn"]]
+[connection signal="pressed" from="CanvasLayer/Control/ToRetry" to="CanvasLayer/Control/ToRetry" method="load_new_scene" binds= ["res://scenes/retry.tscn"]]
 [connection signal="timeout" from="TimeLeft" to="." method="time_finished"]
 [connection signal="timeout" from="TimeToBob" to="." method="start_typing"]

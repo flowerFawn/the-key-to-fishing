@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://srdyjy0itmfh"]
+
+[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_4gmtq"]
+[ext_resource type="Script" path="res://scripts/button_link.gd" id="2_6q5ie"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4gmtq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.551
+anchor_right = 1.001
+anchor_bottom = 0.209
+offset_left = 0.0799561
+offset_top = 2.0
+offset_right = 0.0799561
+offset_bottom = 0.279999
+theme_override_font_sizes/font_size = 100
+text = "Do you want to fish here again?"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Again" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 168.0
+offset_right = 575.0
+offset_bottom = 487.0
+text = "Yes!"
+script = ExtResource("2_6q5ie")
+
+[node name="Back" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1376.0
+offset_top = 608.0
+offset_right = 1888.0
+offset_bottom = 1078.0
+text = "No"
+script = ExtResource("2_6q5ie")
+
+[connection signal="pressed" from="CanvasLayer/Control/Again" to="CanvasLayer/Control/Again" method="load_new_scene" binds= ["res://scenes/typing_scene.tscn"]]
