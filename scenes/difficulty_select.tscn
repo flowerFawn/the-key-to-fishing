@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://88gyqbanxx7e"]
 
-[ext_resource type="Script" path="res://difficulty_select.gd" id="1_e1sd6"]
+[ext_resource type="Script" path="res://scripts/difficulty_select.gd" id="1_e1sd6"]
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="2_c54vk"]
 
 [node name="Node2D" type="Node2D"]

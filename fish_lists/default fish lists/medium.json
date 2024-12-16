@@ -1,0 +1,38 @@
+[
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "They are mutated. Absolutely ill tempered.",
+		"image": "res://assets/fish_images/sea bass.png",
+		"name": "Sea Bass",
+		"size": "small",
+		"weight": 15
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "A tremendously powerful weapon, in the right fins",
+		"image": "res://assets/fish_images/swordfish.png",
+		"name": "Swordfish",
+		"size": "medium",
+		"weight": 150
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "I love him. Look at him. You must love him too, right?",
+		"image": "res://assets/fish_images/goby.png",
+		"name": "Goby",
+		"size": "small",
+		"weight": 1
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "I love him. Look at him. You must love him too, right?",
+		"image": "res://assets/fish_images/goby.png",
+		"name": "Goby",
+		"size": "small",
+		"weight": 1
+	},
+]

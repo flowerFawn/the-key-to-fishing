@@ -71,22 +71,4 @@
 		"size": "small",
 		"weight": 4
 	},
-	{
-		"biggest_catch": 0,
-		"caught": 0,
-		"desc": "Not a kbity qwq. Kinda like catgirls but less of them are transgender.",
-		"image": "res://assets/fish_images/catfish.png",
-		"name": "Catfish",
-		"size": "big",
-		"weight": 100
-	},
-	{
-		"biggest_catch": 0,
-		"caught": 0,
-		"desc": "Not a kbity qwq. Kinda like catgirls but less of them are transgender.",
-		"image": "res://assets/fish_images/catfish.png",
-		"name": "Catfish",
-		"size": "big",
-		"weight": 100
-	}
 ]

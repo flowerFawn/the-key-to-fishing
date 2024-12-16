@@ -7,6 +7,7 @@ var fish_weight: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fish = Game.caught_fish
+	fish_list.pop_at(Game.fish_index)
 	fish["caught"] = fish["caught"] + 1
 	fish_weight = fish["weight"] * Game.last_multiplier
 	if fish["biggest_catch"] < fish_weight:

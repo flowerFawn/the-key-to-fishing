@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw4wbbwbaci2f"]
+[gd_scene load_steps=3 format=3 uid="uid://bw4wbbwbaci2f"]
 
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_4bnrc"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_t3al5"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_4bnrc")
+script = ExtResource("2_t3al5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -30,20 +32,23 @@ theme_override_font_sizes/font_size = 100
 text = "The Key to Fishing!"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "aaa"
+text = "Go fishing!"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Gallery" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "aaa"
+text = "Gallery"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "aaa"
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="load_new_scene" binds= ["res://scenes/difficulty_select.tscn"]]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="quit"]

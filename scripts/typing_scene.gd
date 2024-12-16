@@ -9,9 +9,11 @@ var word_list: Array = load("res://word_lists/%s.json" % Game.difficulty).data
 var first_wait: bool = true
 var pulls_left: int = 0
 var total_time_left: float = 0
+var fish_index: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fish = fish_list.pop_at(random.randi_range(0,len(fish_list) - 1))
+	fish_index = random.randi_range(0,len(fish_list) - 1)
+	fish = fish_list.pop_at(fish_index)
 	pulls_left = SIZE_PULLS[fish["size"]]
 	$CanvasLayer/Control/CastButton.grab_focus()
 
@@ -85,6 +87,7 @@ func _on_input_box_text_changed(new_text: String) -> void:
 			var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
 			Game.last_multiplier = total_multiplier
 			Game.caught_fish = fish
+			Game.fish_index = fish_index
 			$CanvasLayer/Control/ToFishView.disabled = false
 			$CanvasLayer/Control/ToFishView.visible = true
 			$CanvasLayer/Control/ToFishView.grab_focus()
