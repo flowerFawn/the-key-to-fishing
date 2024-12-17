@@ -90,7 +90,7 @@ func _on_input_box_text_changed(new_text: String) -> void:
 			state = "success"
 			#to be used to multiply weight
 			var time_left_percentage = total_time_left / (5 * SIZE_PULLS[fish["size"]])
-			var time_multiplier = time_left_percentage + 0.2
+			var time_multiplier = (time_left_percentage / 2) + 0.8
 			var length_multiplier = (float(len(goal_word)) / 100) + 1
 			var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
 			#stores them all in the autoload Game so that the fish_view.gd script can use them
