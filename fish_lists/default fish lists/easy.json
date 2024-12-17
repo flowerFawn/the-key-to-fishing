@@ -41,8 +41,8 @@
 		"desc": "Not a kbity qwq. Kinda like catgirls but less of them are transgender.",
 		"image": "res://assets/fish_images/catfish.png",
 		"name": "Catfish",
-		"size": "big",
-		"weight": 100
+		"size": "medium",
+		"weight": 30
 	},
 	{
 		"biggest_catch": 0,

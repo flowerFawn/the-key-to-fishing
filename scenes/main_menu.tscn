@@ -44,6 +44,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Gallery"
 
+[node name="Play2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Settings
+"
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -51,4 +58,5 @@ size_flags_vertical = 6
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="load_new_scene" binds= ["res://scenes/difficulty_select.tscn"]]
+[connection signal="pressed" from="VBoxContainer/Play2" to="." method="load_new_scene" binds= ["res://scenes/settings.tscn"]]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="quit"]
