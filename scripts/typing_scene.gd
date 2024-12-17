@@ -10,20 +10,23 @@ var first_wait: bool = true
 var pulls_left: int = 0
 var total_time_left: float = 0
 var fish_index: int = 0
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#picks a fish so that it can be used in the view and to determine amount of pulls
 	fish_index = random.randi_range(0,len(fish_list) - 1)
-	fish = fish_list.pop_at(fish_index)
+	fish = fish_list[fish_index]
+	#sets amount of pulls based on size
 	pulls_left = SIZE_PULLS[fish["size"]]
+	#grab focus is used a lot in this so the user doesn't have to click on an input to start typing
 	$CanvasLayer/Control/CastButton.grab_focus()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	#calls that ... .. . thingy when it should be happening
 	if state == "waiting" and $CanvasLayer/Control/WordDisplay.text == "Fishing for fishes" or $CanvasLayer/Control/WordDisplay.text == "Pulling the fishie back in":
 		waiting_text_dot_cycle()
 
 func waiting_text_dot_cycle():
+	#does that ... .. . thingy, and changes the text depending if it's fishing or pulling
 	for _a in range(3):
 		if state == "waiting":
 			$CanvasLayer/Control/WordDisplay.text = $CanvasLayer/Control/WordDisplay.text + "."
@@ -39,14 +42,17 @@ func waiting_text_dot_cycle():
 
 func start_waiting():
 	$CanvasLayer/Control/CastButton.text = "Splish!"
-	#starts the timer to give a wait time till the text appears
+	#changes the state so the input can't be changed
 	state = "waiting"
+	#disables the button so it can't be used anymore, starting the wait again
 	$CanvasLayer/Control/CastButton.disabled = true
+	#changes displayed text based on if it's fishing or pulling
 	if first_wait:
 		$CanvasLayer/Control/WordDisplay.text = "Fishing for fishes"
 	else:
 		$CanvasLayer/Control/WordDisplay.text = "Pulling the fishie back in"
 	$TimeToBob.wait_time = random.randf_range(2.0, 5.0)
+	#starts the timer to give a wait time till the next word appears
 	$TimeToBob.start()
 
 
@@ -54,7 +60,7 @@ func get_word():
 	return word_list.pick_random()
 	
 func start_typing():
-	
+	#changes, so that next time the text will be for pulling the fishie back in
 	if first_wait:
 		first_wait = false
 	state = "typing"
@@ -64,40 +70,47 @@ func start_typing():
 	$CanvasLayer/Control/InputBox.text = ""
 	$CanvasLayer/Control/CastButton.text = "Type: %s!" % goal_word
 	$CanvasLayer/Control/WordDisplay.text = "It's a %s shadow!" % fish["size"]
+	#the input box is only actually made useable at this point
 	$CanvasLayer/Control/InputBox.editable = true
 	$CanvasLayer/Control/InputBox.grab_focus()
 	$TimeLeft.start()
 	
 	
 func _on_input_box_text_changed(new_text: String) -> void:
-	#checks if the most recent version of the word is the goal word, so it can be 
+	#every time the text in the input is changed it checks if they finished the word
 	if new_text.to_lower() == goal_word and state == "typing":
 		pulls_left -= 1
+		#total_time_left is eventually used to calculate percentage of time remaining
 		total_time_left += $TimeLeft.time_left
 		$TimeLeft.stop()
+		#stops the user editing the input while fishing is going on
 		$CanvasLayer/Control/InputBox.editable = false
 		if pulls_left == 0:
 			$CanvasLayer/Control/WordDisplay.text = "You caught it!"
 			state = "success"
-			print(new_text)
 			#to be used to multiply weight
 			var time_left_percentage = total_time_left / (5 * SIZE_PULLS[fish["size"]])
 			var time_multiplier = time_left_percentage + 0.2
 			var length_multiplier = (float(len(goal_word)) / 100) + 1
 			var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
+			#stores them all in the autoload Game so that the fish_view.gd script can use them
 			Game.last_multiplier = total_multiplier
 			Game.caught_fish = fish
 			Game.fish_index = fish_index
+			#makes the button that brings you to fish_view visible, and leaves the button that brings you to retry invisible
 			$CanvasLayer/Control/ToFishView.disabled = false
 			$CanvasLayer/Control/ToFishView.visible = true
 			$CanvasLayer/Control/ToFishView.grab_focus()
 		else:
+			#starts the game again if the pulls are not all complete
 			start_waiting()
 
 func time_finished() -> void:
 	if state == "typing":
 		state = "failed"
+		#stops the user editing their input after losing
 		$CanvasLayer/Control/InputBox.editable = false
 		$CanvasLayer/Control/WordDisplay.text = "The fish got away!"
+		#makes the button to retry appear
 		$CanvasLayer/Control/ToRetry.disabled = false
 		$CanvasLayer/Control/ToRetry.visible = true

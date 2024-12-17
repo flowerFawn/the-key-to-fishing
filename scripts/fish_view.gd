@@ -6,20 +6,25 @@ var fish_file: FileAccess
 var fish_weight: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#fish is set here to bring it from typing_scene to fish_view
 	fish = Game.caught_fish
+	#removes the fish caught from the list, so it can be replaced with an updated entry
 	fish_list.pop_at(Game.fish_index)
 	fish["caught"] = fish["caught"] + 1
+	#finds the final fish weight based on the multiplier and a preset value
 	fish_weight = fish["weight"] * Game.last_multiplier
+	#stores the users biggest weight for this fish, if the new weight is the biggest
 	if fish["biggest_catch"] < fish_weight:
 		fish["biggest_catch"] = snapped(fish_weight, 0.01)
+	#adds it back, and writes it to the json, so fish caught and biggest weight persist
 	fish_list.append(fish)
 	fish_file = FileAccess.open("res://fish_lists/%s.json" % Game.difficulty, FileAccess.WRITE)
 	fish_file.store_string(JSON.stringify(fish_list, "\t"))
 	fish_file.close()
+	#shows the user all the statistics
 	$CanvasLayer/Control/Description.text = fish["desc"]
 	$CanvasLayer/Control/Name.text = fish["name"]
 	$CanvasLayer/Control/VBoxContainer/Caught.text = "caught: %s" % fish["caught"]
-
 	$CanvasLayer/Control/VBoxContainer/Weight.text = "weight: %slbs" % snapped(fish_weight, 0.01)
 	$CanvasLayer/Control/VBoxContainer/Size.text = "size: %s" % fish["size"]
 	$CanvasLayer/Control/Next.grab_focus()
