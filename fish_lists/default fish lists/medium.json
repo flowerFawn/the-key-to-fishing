@@ -29,10 +29,55 @@
 	{
 		"biggest_catch": 0,
 		"caught": 0,
-		"desc": "I love him. Look at him. You must love him too, right?",
-		"image": "res://assets/fish_images/goby.png",
-		"name": "Goby",
-		"size": "small",
-		"weight": 1
+		"desc": "A great ally and protector. Has seen many sinful things. <3",
+		"image": "res://assets/fish_images/blahaj.png",
+		"name": "Blahaj",
+		"size": "medium",
+		"weight": 110
 	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Well named shark. Weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+		"image": "res://assets/fish_images/spinner shark.png",
+		"name": "Spinner Shark",
+		"size": "medium",
+		"weight": 100
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "The smaller, less loved (by me) sibling of the spinner shark. Might not even have that to it's name, could be adopted.",
+		"image": "res://assets/fish_images/blacktip shark.png",
+		"name": "Blacktip Shark",
+		"size": "medium",
+		"weight": 60
+	}
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Catching her feels ethically wrong",
+		"image": "res://assets/fish_images/mermaid.png",
+		"name": "mermaid",
+		"size": "medium",
+		"weight": 130
+	}
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Look at its eyes; so large, like a puppy. Sad and wet. They can even look up! Adorable shark.",
+		"image": "res://assets/fish_images/bigeye thresher.png",
+		"name": "bigeye thresher",
+		"size": "large",
+		"weight": 375
+	}
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "A bonnethead shark had a virgin birth at Henry Doorly Zoo. I wish them luck on the construction of a shark cross.",
+		"image": "res://assets/fish_images/bigeye thresher.png",
+		"name": "bigeye thresher",
+		"size": "large",
+		"weight": 375
+	}
 ]
