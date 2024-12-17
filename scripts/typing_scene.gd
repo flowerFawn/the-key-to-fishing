@@ -1,6 +1,6 @@
 extends Node2D
 var random = RandomNumberGenerator.new()
-const SIZE_PULLS: Dictionary = {"small":1, "medium":2, "big":3, "large":4, "huge":5, "massive":6}
+const SIZE_PULLS: Dictionary = {"small":1, "medium":2, "big":3, "large":4, "huge":5, "massive":6, "gigantic":8, "Incomprehensible":12}
 var fish_list: Array = load("res://fish_lists/%s.json" % Game.difficulty).data
 var fish: Dictionary = {}
 var goal_word: String = ""
