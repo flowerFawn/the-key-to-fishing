@@ -122,7 +122,7 @@
 		"desc": "To be honest, the pattern looks closer to a zebra; though I doubt 'zebra shark' would sound as good",
 		"image": "res://assets/fish_images/tiger shark.png",
 		"name": "Tiger shark",
-		"size": "medium",
+		"size": "huge",
 		"weight": 2000
 	}
 ]
