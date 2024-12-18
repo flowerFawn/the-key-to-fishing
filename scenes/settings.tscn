@@ -45,4 +45,4 @@ size_flags_vertical = 6
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/ResetData" to="." method="reset_data"]
-[connection signal="pressed" from="VBoxContainer/Back" to="." method="reset_data"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="back_to_main_menu"]

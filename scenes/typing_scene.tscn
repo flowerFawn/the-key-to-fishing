@@ -19,6 +19,15 @@ grow_vertical = 2
 theme = ExtResource("2_yxxxw")
 metadata/_edit_use_anchors_ = true
 
+[node name="InputWordGuide" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 406.0
+offset_right = 1826.0
+offset_bottom = 674.0
+theme_override_font_sizes/font_size = 150
+vertical_alignment = 1
+
 [node name="InputBox" type="LineEdit" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1

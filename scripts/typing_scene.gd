@@ -11,6 +11,8 @@ var pulls_left: int = 0
 var total_time_left: float = 0
 var fish_index: int = 0
 func _ready() -> void:
+	var difficulty_times = {"easy":4, "medium":5, "hard":6}
+	$TimeLeft.wait_time = difficulty_times[Game.difficulty]
 	#picks a fish so that it can be used in the view and to determine amount of pulls
 	fish_index = random.randi_range(0,len(fish_list) - 1)
 	fish = fish_list[fish_index]
@@ -67,6 +69,7 @@ func start_typing():
 	goal_word = get_word()
 	#sets the player to already be selected on the input as soon as they can type
 	#starts the timer that counts how long they have spent
+	$CanvasLayer/Control/InputWordGuide.text = goal_word
 	$CanvasLayer/Control/InputBox.text = ""
 	$CanvasLayer/Control/CastButton.text = "Type: %s!" % goal_word
 	$CanvasLayer/Control/WordDisplay.text = "It's a %s shadow!" % fish["size"]
@@ -89,7 +92,7 @@ func _on_input_box_text_changed(new_text: String) -> void:
 			$CanvasLayer/Control/WordDisplay.text = "You caught it!"
 			state = "success"
 			#to be used to multiply weight
-			var time_left_percentage = total_time_left / (5 * SIZE_PULLS[fish["size"]])
+			var time_left_percentage = total_time_left / ($TimeLeft.wait_time * SIZE_PULLS[fish["size"]])
 			var time_multiplier = (time_left_percentage / 2) + 0.8
 			var length_multiplier = (float(len(goal_word)) / 100) + 1
 			var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
