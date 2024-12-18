@@ -17,12 +17,10 @@ func back_to_main_menu():
 
 func reset_data():
 	#goes through the default json files, and overwrites the user jsons with the same name with the contents of the default.
-	var defaults = DirAccess.open("res://fish_lists/default fish lists/")
-	var user_file = FileAccess
 	var default_data: Array = []
-	for default_file in defaults.get_files():
-		default_data = load("res://fish_lists/default fish lists/%s" % default_file).data
-		user_file = FileAccess.open("res://fish_lists/%s" % default_file, FileAccess.WRITE)
-		user_file.store_string(JSON.stringify(default_data, "\t"))
-		user_file.close()
-		
+	var new_data_location: FileAccess
+	for difficulty in ["easy", "medium", "hard"]:
+		new_data_location = FileAccess.open("user://fish_lists/%s.json" % difficulty, FileAccess.WRITE)
+		default_data = load("res://fish_lists/%s.json" % difficulty).data
+		new_data_location.store_string(JSON.stringify(default_data, "\t"))
+		new_data_location.close()

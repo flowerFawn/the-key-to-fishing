@@ -1,6 +1,6 @@
 extends Node2D
 var random = RandomNumberGenerator.new()
-var fish_list: Array = load("res://fish_lists/%s.json" % Game.difficulty).data
+var fish_list: Array = load("user://fish_lists/%s.json" % Game.difficulty).data
 var fish: Dictionary = {}
 var fish_file: FileAccess
 var fish_weight: float = 0.0
@@ -18,7 +18,7 @@ func _ready() -> void:
 		fish["biggest_catch"] = snapped(fish_weight, 0.01)
 	#adds it back, and writes it to the json, so fish caught and biggest weight persist
 	fish_list.append(fish)
-	fish_file = FileAccess.open("res://fish_lists/%s.json" % Game.difficulty, FileAccess.WRITE)
+	fish_file = FileAccess.open("user://fish_lists/%s.json" % Game.difficulty, FileAccess.WRITE)
 	fish_file.store_string(JSON.stringify(fish_list, "\t"))
 	fish_file.close()
 	#shows the user all the statistics
