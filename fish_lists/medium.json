@@ -124,5 +124,14 @@
 		"name": "Tiger shark",
 		"size": "huge",
 		"weight": 2000
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Probably better at this game than you are.",
+		"image": "res://assets/fish_images/octopus.png",
+		"name": "Octopus",
+		"size": "medium",
+		"weight": 150
 	}
 ]

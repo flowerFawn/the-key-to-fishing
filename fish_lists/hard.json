@@ -3,8 +3,26 @@
 		"biggest_catch": 0,
 		"caught": 0,
 		"desc": "I love him. Many trans women love him. He holds a place in my heart. <3",
-		"image": "res://assets/fish_images/Placeholder.png",
+		"image": "res://assets/fish_images/placeholder.png",
 		"name": "Placeholder",
+		"size": "medium",
+		"weight": 200
+	},	
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Literally me. 5'10 btw.",
+		"image": "res://assets/fish_images/girl.png",
+		"name": "Girl",
+		"size": "medium",
+		"weight": 130
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Weird looking guy",
+		"image": "res://assets/fish_images/anglerfish.png",
+		"name": "Anglerfish",
 		"size": "medium",
 		"weight": 200
 	},
