@@ -7,7 +7,7 @@
 		"name": "Placeholder",
 		"size": "medium",
 		"weight": 200
-	},	
+	},
 	{
 		"biggest_catch": 0,
 		"caught": 0,
@@ -20,10 +20,10 @@
 	{
 		"biggest_catch": 0,
 		"caught": 0,
-		"desc": "Weird looking guy",
+		"desc": "Anglerfish created the ideal relationship tbh. Chaser anglerfishgirl and her trans anglerfishgirl gf. Waogh",
 		"image": "res://assets/fish_images/anglerfish.png",
 		"name": "Anglerfish",
 		"size": "medium",
 		"weight": 200
-	},
+	}
 ]

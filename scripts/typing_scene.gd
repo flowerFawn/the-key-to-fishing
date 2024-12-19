@@ -12,7 +12,7 @@ var total_time_left: float = 0
 var fish_index: int = 0
 var total_length: int = 0
 func _ready() -> void:
-	var difficulty_times = {"easy":4, "medium":5, "hard":8}
+	var difficulty_times = {"easy":4, "medium":5, "hard":6}
 	$TimeLeft.wait_time = difficulty_times[Game.difficulty]
 	#picks a fish so that it can be used in the view and to determine amount of pulls
 	fish_index = random.randi_range(0,len(fish_list) - 1)
