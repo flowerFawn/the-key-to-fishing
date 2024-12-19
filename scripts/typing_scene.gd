@@ -10,6 +10,7 @@ var first_wait: bool = true
 var pulls_left: int = 0
 var total_time_left: float = 0
 var fish_index: int = 0
+var total_length: int = 0
 func _ready() -> void:
 	var difficulty_times = {"easy":4, "medium":5, "hard":6}
 	$TimeLeft.wait_time = difficulty_times[Game.difficulty]
@@ -67,6 +68,7 @@ func start_typing():
 		first_wait = false
 	state = "typing"
 	goal_word = get_word()
+	total_length += len(goal_word)
 	#sets the player to already be selected on the input as soon as they can type
 	#starts the timer that counts how long they have spent
 	$CanvasLayer/Control/InputWordGuide.text = goal_word
@@ -94,7 +96,8 @@ func _on_input_box_text_changed(new_text: String) -> void:
 			#to be used to multiply weight
 			var time_left_percentage = total_time_left / ($TimeLeft.wait_time * SIZE_PULLS[fish["size"]])
 			var time_multiplier = (time_left_percentage / 2) + 0.8
-			var length_multiplier = (float(len(goal_word)) / 100) + 1
+			#sets length_multiplier to the average length of a word this fish as 1% each, plus 1
+			var length_multiplier = (float(total_length / SIZE_PULLS[fish["size"]] ) / 100) + 1
 			var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
 			#stores them all in the autoload Game so that the fish_view.gd script can use them
 			Game.last_multiplier = total_multiplier
