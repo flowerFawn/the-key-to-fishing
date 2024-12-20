@@ -133,5 +133,14 @@
 		"name": "Octopus",
 		"size": "medium",
 		"weight": 150
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "The cephalapod, not the ship.",
+		"image": "res://assets/fish_images/nautilus.png",
+		"name": "Nautilus",
+		"size": "small",
+		"weight": 2
 	}
 ]

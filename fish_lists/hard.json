@@ -24,6 +24,96 @@
 		"image": "res://assets/fish_images/anglerfish.png",
 		"name": "Anglerfish",
 		"size": "medium",
+		"weight": 250
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "An imposing living fossil, living beyond it's age.",
+		"image": "res://assets/fish_images/coelacanth.png",
+		"name": "Coelacanth",
+		"size": "big",
+		"weight": 500
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "An evertwisting serpent of the sea, an omen of doomsday.",
+		"image": "res://assets/fish_images/oarfish.png",
+		"name": "Oarfish",
+		"size": "big",
+		"weight": 700
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "A basking giant.",
+		"image": "res://assets/fish_images/sunfish.png",
+		"name": "Sunfish",
+		"size": "large",
+		"weight": 1000
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "A non-basking little guy.",
+		"image": "res://assets/fish_images/moonfish.png",
+		"name": "Moonfish",
+		"size": "small",
+		"weight": 35
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "A writhing mass of struggling subjects",
+		"image": "res://assets/fish_images/anchovy king.png",
+		"name": "Anchovy King",
+		"size": "medium",
 		"weight": 200
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Born of the death of a gorgon. Twice the heads, twice the strength, twice the pain. Also something something yuri.",
+		"image": "res://assets/fish_images/amphisbaena.png",
+		"name": "Sea Amphisbaena",
+		"size": "large",
+		"weight": 1250
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "A dragon amongst the waves.",
+		"image": "res://assets/fish_images/sea serpent.png",
+		"name": "Sea Serpent",
+		"size": "huge",
+		"weight": 3000
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "Kinda like a blahaj but bigger.",
+		"image": "res://assets/fish_images/megaladon.png",
+		"name": "Megaladon",
+		"size": "gigantic",
+		"weight": 10000
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "A biblical monster, given life. But like also a type of sperm whale???? fish are weird.",
+		"image": "res://assets/fish_images/livyatan.png",
+		"name": "Livyatan",
+		"size": "massive",
+		"weight": 4500
+	},
+	{
+		"biggest_catch": 0,
+		"caught": 0,
+		"desc": "The ship, not the cephalapod.",
+		"image": "res://assets/fish_images/the nautilus.png",
+		"name": "The Nautilus",
+		"size": "huge",
+		"weight": 3000
 	}
 ]
