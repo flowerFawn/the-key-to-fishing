@@ -22,6 +22,8 @@ func _ready() -> void:
 	fish_file.store_string(JSON.stringify(fish_list, "\t"))
 	fish_file.close()
 	#shows the user all the statistics
+	if ResourceLoader.exists(fish["image"]):
+		$CanvasLayer/Control/Image.texture = load(fish["image"])
 	$CanvasLayer/Control/Description.text = fish["desc"]
 	$CanvasLayer/Control/Name.text = fish["name"]
 	$CanvasLayer/Control/VBoxContainer/Caught.text = "caught: %s" % fish["caught"]

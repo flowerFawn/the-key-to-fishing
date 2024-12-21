@@ -54,7 +54,7 @@ offset_bottom = 1080.0
 text = "Throw it back in!"
 script = ExtResource("3_cwf8j")
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="Image" type="Sprite2D" parent="CanvasLayer/Control"]
 position = Vector2(394, 429)
 scale = Vector2(2, 2)
 texture = ExtResource("3_8bf20")
