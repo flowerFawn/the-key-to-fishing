@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c868lbl0xgjdb"]
+
+[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_5edxt"]
+[ext_resource type="Texture2D" uid="uid://d1ack4ko6yihv" path="res://assets/fish_images/placeholder.png" id="1_tswmb"]
+[ext_resource type="Script" path="res://scripts/fish_display.gd" id="2_y38r3"]
+
+[node name="FishDisplay" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+offset_right = -1720.0
+offset_bottom = -920.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("1_5edxt")
+alignment = 1
+script = ExtResource("2_y38r3")
+
+[node name="Image" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_tswmb")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Caught" type="Label" parent="."]
+layout_mode = 2
+text = "Caught"
+horizontal_alignment = 1
+
+[node name="BiggestCatch" type="Label" parent="."]
+layout_mode = 2
+text = "Biggest Catch"
+horizontal_alignment = 1

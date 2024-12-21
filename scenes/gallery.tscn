@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://y4rknhaalhw"]
+
+[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_01q21"]
+[ext_resource type="Script" path="res://scripts/gallery_tab.gd" id="2_07r6k"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_01q21")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.006
+anchor_bottom = 0.007
+offset_right = 1908.48
+offset_bottom = 1072.44
+current_tab = 2
+
+[node name="The Pond!" type="ScrollContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_07r6k")
+metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/The Pond!"]
+clip_contents = true
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="The Ocean!" type="ScrollContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_07r6k")
+difficulty_fish = "medium"
+metadata/_tab_index = 1
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/The Ocean!"]
+clip_contents = true
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="The Depths!" type="ScrollContainer" parent="TabContainer"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 2
+script = ExtResource("2_07r6k")
+difficulty_fish = "hard"
+metadata/_tab_index = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/The Depths!"]
+clip_contents = true
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3

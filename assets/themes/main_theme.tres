@@ -5,6 +5,7 @@
 [resource]
 default_font = ExtResource("1_nb1hy")
 Button/font_sizes/font_size = 100
+GridContainer/constants/v_separation = 200
 Label/font_sizes/font_size = 60
 LineEdit/font_sizes/font_size = 150
 TextEdit/font_sizes/font_size = 150
