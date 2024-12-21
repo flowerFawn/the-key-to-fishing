@@ -16,11 +16,13 @@ func _ready() -> void:
 		fish_display_instance = default_fish_display.instantiate()
 		if fish["caught"] > 0:
 			#if it has been caught it shows the fish. eventually this will include the image
+			fish_display_instance.image_path = fish["image"]
 			fish_display_instance.fish_name = fish["name"]
 			fish_display_instance.caught = fish["caught"]
 			fish_display_instance.biggest_catch = fish["biggest_catch"]
 		else:
 			#otherwise it will show a black default fish, and ??? as the name
+			fish_display_instance.image_path = "res://assets/fish_images/uncaught.png"
 			fish_display_instance.fish_name = "???"
 			fish_display_instance.caught = 0
 			fish_display_instance.biggest_catch = 0
