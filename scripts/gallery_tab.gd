@@ -1,17 +1,24 @@
 extends ScrollContainer
 @export var difficulty_fish: String = "easy" #the fish list that will be read from. In lower case, easy, medium, hard
 var default_fish_display = preload("res://scenes/default_fish_display.tscn")
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var fish_list = load("user://fish_lists/%s.json" % difficulty_fish).data
 	var fish_display_instance
 	for fish in fish_list:
+		#creates a new fish_display in the grid container, to make the grid
 		fish_display_instance = default_fish_display.instantiate()
-		fish_display_instance.fish_name = fish["name"]
-		fish_display_instance.caught = fish["caught"]
-		fish_display_instance.biggest_catch = fish["biggest_catch"]
+		if fish["caught"] > 0:
+			#if it has been caught it shows the fish. eventually this will include the image
+			fish_display_instance.fish_name = fish["name"]
+			fish_display_instance.caught = fish["caught"]
+			fish_display_instance.biggest_catch = fish["biggest_catch"]
+		else:
+			#otherwise it will show a black default fish, and ??? as the name
+			fish_display_instance.fish_name = "???"
+			fish_display_instance.caught = 0
+			fish_display_instance.biggest_catch = 0
+		#putting it in the gridcontainer makes it all go into a nice grid
 		$GridContainer.add_child(fish_display_instance)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

@@ -58,5 +58,6 @@ size_flags_vertical = 6
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="load_new_scene" binds= ["res://scenes/difficulty_select.tscn"]]
+[connection signal="pressed" from="VBoxContainer/Gallery" to="." method="load_new_scene" binds= ["res://scenes/gallery.tscn"]]
 [connection signal="pressed" from="VBoxContainer/Play2" to="." method="load_new_scene" binds= ["res://scenes/settings.tscn"]]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="quit"]
