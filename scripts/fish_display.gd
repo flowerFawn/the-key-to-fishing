@@ -8,7 +8,7 @@ func _ready() -> void:
 	#this script only exists to change the labels and image for each instance, as direct access is impossible I think??
 	$Name.text = fish_name
 	$Caught.text = "Caught: %s" % str(caught)
-	$BiggestCatch.text = "Biggest catch: %s" % str(biggest_catch)
+	$BiggestCatch.text = "Biggest catch: %slbs" % str(biggest_catch)
 
 
 func _process(delta: float) -> void:
