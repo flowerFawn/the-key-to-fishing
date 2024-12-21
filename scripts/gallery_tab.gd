@@ -1,9 +1,16 @@
 extends ScrollContainer
 @export var difficulty_fish: String = "easy" #the fish list that will be read from. In lower case, easy, medium, hard
 var default_fish_display = preload("res://scenes/default_fish_display.tscn")
+
+
+func sort_by_fish_name(a, b):
+	return a["weight"] < b["weight"]
+
+
 func _ready() -> void:
-	var fish_list = load("user://fish_lists/%s.json" % difficulty_fish).data
+	var fish_list: Array = load("user://fish_lists/%s.json" % difficulty_fish).data
 	var fish_display_instance
+	fish_list.sort_custom(sort_by_fish_name)
 	for fish in fish_list:
 		#creates a new fish_display in the grid container, to make the grid
 		fish_display_instance = default_fish_display.instantiate()
