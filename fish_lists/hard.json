@@ -65,15 +65,6 @@
 	{
 		"biggest_catch": 0,
 		"caught": 0,
-		"desc": "A writhing mass of struggling subjects",
-		"image": "res://assets/fish_images/anchovy king.png",
-		"name": "Anchovy King",
-		"size": "medium",
-		"weight": 200
-	},
-	{
-		"biggest_catch": 0,
-		"caught": 0,
 		"desc": "Born of the death of a gorgon. Twice the heads, twice the strength, twice the pain. Also something something yuri.",
 		"image": "res://assets/fish_images/amphisbaena.png",
 		"name": "Sea Amphisbaena",
