@@ -12,7 +12,7 @@
 		"biggest_catch": 0,
 		"caught": 0,
 		"desc": "Literally me. 5'9 btw.",
-		"image": "res://assets/fish_images/girl.png",
+		"image": "res://assets/fish_images/boymoder.png",
 		"name": "Girl",
 		"size": "medium",
 		"weight": 130
@@ -84,8 +84,8 @@
 		"biggest_catch": 0,
 		"caught": 0,
 		"desc": "Kinda like a blahaj but bigger.",
-		"image": "res://assets/fish_images/megaladon.png",
-		"name": "Megaladon",
+		"image": "res://assets/fish_images/blahaj.png",
+		"name": "Megalodon",
 		"size": "gigantic",
 		"weight": 10000
 	},
