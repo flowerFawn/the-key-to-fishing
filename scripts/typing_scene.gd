@@ -60,7 +60,9 @@ func start_waiting():
 
 
 func get_word():
-	return word_list.pick_random()
+	var new_word = word_list.pick_random()
+	$CanvasLayer/Control/RichTextDisplay.goal_word = new_word
+	return new_word
 	
 func start_typing():
 	#changes, so that next time the text will be for pulling the fishie back in
@@ -71,7 +73,6 @@ func start_typing():
 	total_length += len(goal_word)
 	#sets the player to already be selected on the input as soon as they can type
 	#starts the timer that counts how long they have spent
-	$CanvasLayer/Control/InputWordGuide.text = goal_word
 	$CanvasLayer/Control/InputBox.text = ""
 	$CanvasLayer/Control/CastButton.text = "Type: %s!" % goal_word
 	$CanvasLayer/Control/WordDisplay.text = "It's a %s shadow!" % fish["size"]
