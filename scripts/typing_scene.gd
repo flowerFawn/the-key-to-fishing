@@ -122,3 +122,10 @@ func time_finished() -> void:
 		#makes the button to retry appear
 		$CanvasLayer/Control/ToRetry.disabled = false
 		$CanvasLayer/Control/ToRetry.visible = true
+
+
+func _on_input_box_focus_exited() -> void:
+	print(state)
+	if state == "typing":
+		await get_tree().create_timer(0.00000001).timeout
+		$CanvasLayer/Control/InputBox.grab_focus()
