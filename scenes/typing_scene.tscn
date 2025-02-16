@@ -128,7 +128,7 @@ theme_override_font_sizes/bold_font_size = 200
 bbcode_enabled = true
 script = ExtResource("4_54bab")
 
-[node name="Icon" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="VisualInputBox" type="Sprite2D" parent="CanvasLayer/Control"]
 z_index = 1
 position = Vector2(961, 540)
 scale = Vector2(2, 2)

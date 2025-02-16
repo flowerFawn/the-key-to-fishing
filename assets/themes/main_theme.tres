@@ -1,10 +1,16 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://qjmal2ehrfr1"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://qjmal2ehrfr1"]
 
+[ext_resource type="StyleBox" uid="uid://dfiupufx3ympg" path="res://assets/themes/easy_button.tres" id="1_6lcdk"]
 [ext_resource type="FontFile" uid="uid://ci6t1x1pubjhm" path="res://assets/rainyhearts.ttf" id="1_nb1hy"]
 
 [resource]
 default_font = ExtResource("1_nb1hy")
 Button/font_sizes/font_size = 100
+Button/styles/disabled = ExtResource("1_6lcdk")
+Button/styles/focus = ExtResource("1_6lcdk")
+Button/styles/hover = ExtResource("1_6lcdk")
+Button/styles/normal = ExtResource("1_6lcdk")
+Button/styles/pressed = ExtResource("1_6lcdk")
 GridContainer/constants/v_separation = 200
 Label/font_sizes/font_size = 60
 LineEdit/font_sizes/font_size = 150
