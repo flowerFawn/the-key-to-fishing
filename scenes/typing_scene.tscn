@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/rich_text_display.gd" id="4_54bab"]
 [ext_resource type="Script" path="res://scripts/fishing_graphics.gd" id="4_o8q2k"]
 [ext_resource type="Texture2D" uid="uid://dvvsvih65qakf" path="res://assets/images/bob.png" id="5_1o12r"]
-[ext_resource type="Texture2D" uid="uid://b5lb8hl1414xi" path="res://assets/ui/inputbox.png" id="5_8d0yy"]
+[ext_resource type="Texture2D" uid="uid://b5lb8hl1414xi" path="res://assets/ui/easy_inputbox.png" id="5_8d0yy"]
 
 [node name="TypingScene" type="Node2D"]
 script = ExtResource("1_4430f")
@@ -24,6 +24,7 @@ theme = ExtResource("2_yxxxw")
 metadata/_edit_use_anchors_ = true
 
 [node name="InputBox" type="LineEdit" parent="CanvasLayer/Control"]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -39,6 +40,7 @@ grow_vertical = 2
 editable = false
 
 [node name="WordDisplay" type="Label" parent="CanvasLayer/Control"]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -54,21 +56,23 @@ text = "Ready to cast your rod?"
 horizontal_alignment = 1
 
 [node name="CastButton" type="Button" parent="CanvasLayer/Control"]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.29
 anchor_top = 0.067
 anchor_right = 0.71
 anchor_bottom = 0.244
-offset_left = 0.199951
+offset_left = 3.20001
 offset_top = -0.360001
-offset_right = -0.200073
-offset_bottom = -0.52002
+offset_right = -3.19995
+offset_bottom = 8.48001
 grow_horizontal = 2
 text = "Cast!"
 
 [node name="ToFishView" type="Button" parent="CanvasLayer/Control"]
 visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.308
@@ -87,6 +91,7 @@ script = ExtResource("3_7a13b")
 
 [node name="ToRetry" type="Button" parent="CanvasLayer/Control"]
 visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.308

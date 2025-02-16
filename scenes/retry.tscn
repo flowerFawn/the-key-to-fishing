@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://srdyjy0itmfh"]
 
-[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_4gmtq"]
+[ext_resource type="Theme" uid="uid://c1b0kismygoju" path="res://assets/themes/hard_theme.tres" id="1_rwgbm"]
 [ext_resource type="Script" path="res://scripts/button_link.gd" id="2_6q5ie"]
 
 [node name="Node2D" type="Node2D"]
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_4gmtq")
+theme = ExtResource("1_rwgbm")
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]

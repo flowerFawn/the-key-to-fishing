@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://y4rknhaalhw"]
 
-[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_01q21"]
+[ext_resource type="Theme" uid="uid://c1b0kismygoju" path="res://assets/themes/hard_theme.tres" id="1_ev7ha"]
 [ext_resource type="Script" path="res://scripts/gallery_tab.gd" id="2_07r6k"]
 [ext_resource type="Script" path="res://scripts/button_link.gd" id="3_y8ai4"]
 
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_01q21")
+theme = ExtResource("1_ev7ha")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1

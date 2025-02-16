@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c1b0kismygoju"]
+
+[ext_resource type="StyleBox" uid="uid://donnoj2y4ofu3" path="res://assets/themes/hard_button.tres" id="1_hmrcc"]
+[ext_resource type="FontFile" uid="uid://ci6t1x1pubjhm" path="res://assets/rainyhearts.ttf" id="2_t1ggf"]
+
+[resource]
+default_font = ExtResource("2_t1ggf")
+Button/font_sizes/font_size = 100
+Button/styles/disabled = ExtResource("1_hmrcc")
+Button/styles/focus = ExtResource("1_hmrcc")
+Button/styles/hover = ExtResource("1_hmrcc")
+Button/styles/normal = ExtResource("1_hmrcc")
+Button/styles/pressed = ExtResource("1_hmrcc")
+GridContainer/constants/v_separation = 200
+Label/font_sizes/font_size = 60
+LineEdit/font_sizes/font_size = 150
+TextEdit/font_sizes/font_size = 150
