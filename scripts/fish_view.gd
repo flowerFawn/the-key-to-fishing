@@ -6,6 +6,7 @@ var fish_file: FileAccess
 var fish_weight: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$CanvasLayer/Control.theme = load("res://assets/themes/%s_theme.tres" % Game.difficulty)
 	#fish is set here to bring it from typing_scene to fish_view
 	fish = Game.caught_fish
 	#removes the fish caught from the list, so it can be replaced with an updated entry
