@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://88gyqbanxx7e"]
+[gd_scene load_steps=8 format=3 uid="uid://88gyqbanxx7e"]
 
 [ext_resource type="Script" path="res://scripts/difficulty_select.gd" id="1_e1sd6"]
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="2_qiw2s"]
 [ext_resource type="Texture2D" uid="uid://c02y5hlyahrpe" path="res://assets/ui/backgrounds/difficulty select.png" id="3_47jdx"]
 [ext_resource type="Texture2D" uid="uid://lf1umb6qrnph" path="res://assets/ui/backgrounds/waves.png" id="4_ktlwf"]
 [ext_resource type="Script" path="res://scripts/waves.gd" id="5_nlkp3"]
+[ext_resource type="Texture2D" uid="uid://bnhgj5m88xxrp" path="res://assets/ui/buttons/easy_select.png" id="6_arcv3"]
+[ext_resource type="Script" path="res://scripts/difficulty_select_button.gd" id="7_75cfv"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_e1sd6")
@@ -32,19 +34,6 @@ position = Vector2(960, 540)
 scale = Vector2(2, 2)
 texture = ExtResource("4_ktlwf")
 script = ExtResource("5_nlkp3")
-
-[node name="Easy" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.123
-anchor_top = 0.496
-anchor_right = 0.34
-anchor_bottom = 0.723
-offset_left = 0.839996
-offset_top = 0.319946
-offset_right = -0.799988
-offset_bottom = 0.159973
-text = "Easy"
 
 [node name="Medium" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -85,7 +74,20 @@ offset_right = 0.679993
 offset_bottom = -0.400024
 text = "Back"
 
-[connection signal="pressed" from="CanvasLayer/Control/Easy" to="." method="load_fishing_with_difficulty_change" binds= ["easy"]]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 456.0
+offset_right = 385.0
+offset_bottom = 856.0
+pivot_offset = Vector2(200, 200)
+texture_normal = ExtResource("6_arcv3")
+stretch_mode = 0
+script = ExtResource("7_75cfv")
+
 [connection signal="pressed" from="CanvasLayer/Control/Medium" to="." method="load_fishing_with_difficulty_change" binds= ["medium"]]
 [connection signal="pressed" from="CanvasLayer/Control/Hard" to="." method="load_fishing_with_difficulty_change" binds= ["hard"]]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="main_menu"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/TextureButton" to="CanvasLayer/Control/TextureButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Control/TextureButton" to="CanvasLayer/Control/TextureButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Control/TextureButton" to="." method="load_fishing_with_difficulty_change" binds= ["easy"]]
