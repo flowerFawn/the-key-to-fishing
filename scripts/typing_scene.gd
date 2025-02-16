@@ -76,6 +76,7 @@ func start_typing():
 	$CanvasLayer/Control/InputBox.text = ""
 	$CanvasLayer/Control/CastButton.text = "Type: %s!" % goal_word
 	$CanvasLayer/Control/WordDisplay.text = "It's a %s shadow!" % fish["size"]
+	$CanvasLayer/Control/RichTextDisplay._on_input_box_text_changed("")
 	await get_tree().create_timer(0.5).timeout
 	#the input box is only actually made useable at this point
 	$CanvasLayer/Control/InputBox.editable = true
