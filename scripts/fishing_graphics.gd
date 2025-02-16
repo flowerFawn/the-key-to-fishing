@@ -5,7 +5,9 @@ var bob_moving:bool = false
 var min_bob_distance: int = 0
 var max_bob_distance: int = 0
 
-
+func _ready() -> void:
+	$Background.texture = load("res://assets/ui/backgrounds/%s_background.png" % Game.difficulty)
+	$Foreground.texture = load("res://assets/ui/backgrounds/%s_foreground.png" % Game.difficulty)
 
 func _process(delta: float) -> void:
 	state = get_parent().state
