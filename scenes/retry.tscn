@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c1b0kismygoju" path="res://assets/themes/hard_theme.tres" id="1_rwgbm"]
 [ext_resource type="Script" path="res://scripts/button_link.gd" id="2_6q5ie"]
-[ext_resource type="Script" path="res://scenes/set_self_theme.gd" id="2_dv7mb"]
+[ext_resource type="Script" path="res://scripts/set_self_theme.gd" id="2_dv7mb"]
 
 [node name="Node2D" type="Node2D"]
 
