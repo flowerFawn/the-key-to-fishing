@@ -56,7 +56,6 @@ func _on_input_box_text_changed(new_text: String) -> void:
 		i += 1
 	if len(goal_word) > i:
 		#adds the rest of the goal word to the end
-		coloured_text += "[/color]"
 		coloured_text += "[color=%s]" % untyped_colour
 		coloured_text += goal_word.right(len(goal_word) - (i))
 	coloured_text += "[/color]"
