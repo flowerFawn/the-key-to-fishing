@@ -13,7 +13,7 @@ var fish_index: int = 0
 var total_length: int = 0
 func _ready() -> void:
 	$CanvasLayer/Control.theme = load("res://assets/themes/%s_theme.tres" % Game.difficulty)
-	$CanvasLayer/Control/VisualInputBox.texture = load("res://assets/ui/%s_inputbox.png" % Game.difficulty)
+	$CanvasLayer/Control/VisualInputBox.texture = load("res://assets/ui/buttons/%s_inputbox.png" % Game.difficulty)
 	var difficulty_times = {"easy":4, "medium":5, "hard":6}
 	$TimeLeft.wait_time = difficulty_times[Game.difficulty]
 	#picks a fish so that it can be used in the view and to determine amount of pulls
