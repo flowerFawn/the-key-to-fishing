@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/typing_scene.gd" id="1_4430f"]
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="2_yxxxw"]
 [ext_resource type="Script" path="res://scripts/button_link.gd" id="3_7a13b"]
-[ext_resource type="Texture2D" uid="uid://bh55b53p3nlef" path="res://icon.svg" id="4_3sr5k"]
 [ext_resource type="Script" path="res://scripts/rich_text_display.gd" id="4_54bab"]
 [ext_resource type="Script" path="res://scripts/fishing_graphics.gd" id="4_o8q2k"]
 [ext_resource type="Texture2D" uid="uid://dvvsvih65qakf" path="res://assets/images/bob.png" id="5_1o12r"]
+[ext_resource type="Texture2D" uid="uid://b5lb8hl1414xi" path="res://assets/ui/inputbox.png" id="5_8d0yy"]
 
 [node name="TypingScene" type="Node2D"]
 script = ExtResource("1_4430f")
@@ -111,10 +111,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -860.0
-offset_top = -132.0
-offset_right = 862.0
-offset_bottom = 133.0
+offset_left = -859.0
+offset_top = -92.0
+offset_right = 863.0
+offset_bottom = 173.0
 theme_override_font_sizes/bold_italics_font_size = 200
 theme_override_font_sizes/italics_font_size = 200
 theme_override_font_sizes/mono_font_size = 200
@@ -126,8 +126,8 @@ script = ExtResource("4_54bab")
 [node name="Icon" type="Sprite2D" parent="CanvasLayer/Control"]
 z_index = 1
 position = Vector2(961, 540)
-scale = Vector2(13.4375, 2.07813)
-texture = ExtResource("4_3sr5k")
+scale = Vector2(2, 2)
+texture = ExtResource("5_8d0yy")
 
 [node name="TimeLeft" type="Timer" parent="."]
 wait_time = 5.0
