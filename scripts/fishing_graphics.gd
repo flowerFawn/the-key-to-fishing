@@ -8,7 +8,18 @@ var max_bob_distance: int = 0
 func _ready() -> void:
 	$Background.texture = load("res://assets/ui/backgrounds/%s_background.png" % Game.difficulty)
 	$Foreground.texture = load("res://assets/ui/backgrounds/%s_foreground.png" % Game.difficulty)
-
+	if Game.difficulty != "easy":
+		var ship_sway_distance:int
+		var ship_sway_tween
+		if Game.difficulty == "medium":
+			ship_sway_distance = 10
+		elif Game.difficulty == "hard":
+			ship_sway_distance = 20
+		while true:
+			ship_sway_tween = create_tween()
+			ship_sway_tween.tween_property($Foreground, "position", Vector2(randi_range(-ship_sway_distance, ship_sway_distance), randi_range(0, ship_sway_distance * 2)), randi_range(1, 3))
+			await ship_sway_tween.finished
+			
 func _process(delta: float) -> void:
 	state = get_parent().state
 	$Line2D.points[1] = $Bob.position + Vector2(4, -70)
