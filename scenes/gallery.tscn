@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://y4rknhaalhw"]
+[gd_scene load_steps=5 format=3 uid="uid://y4rknhaalhw"]
 
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_j13ig"]
 [ext_resource type="Script" path="res://scripts/gallery_tab.gd" id="2_07r6k"]
+[ext_resource type="Texture2D" uid="uid://dhij6r5u7lqgj" path="res://assets/ui/backgrounds/wood_planks_resized_background_.png" id="3_ghl7p"]
 [ext_resource type="Script" path="res://scripts/button_link.gd" id="3_y8ai4"]
 
 [node name="Control" type="Control"]
@@ -20,10 +21,9 @@ anchor_right = 0.006
 anchor_bottom = 0.007
 offset_right = 1908.48
 offset_bottom = 1072.44
-current_tab = 2
+current_tab = 0
 
 [node name="The Pond!" type="ScrollContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("2_07r6k")
 metadata/_tab_index = 0
@@ -35,6 +35,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/The Pond!"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_ghl7p")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="The Ocean!" type="ScrollContainer" parent="TabContainer"]
 visible = false
@@ -52,6 +60,7 @@ size_flags_vertical = 3
 columns = 3
 
 [node name="The Depths!" type="ScrollContainer" parent="TabContainer"]
+visible = false
 custom_minimum_size = Vector2(1920, 0)
 layout_mode = 2
 script = ExtResource("2_07r6k")
