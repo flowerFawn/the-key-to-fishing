@@ -1,7 +1,7 @@
 extends ScrollContainer
 @export var difficulty_fish: String = "easy" #the fish list that will be read from. In lower case, easy, medium, hard
 var default_fish_display = preload("res://scenes/default_fish_display.tscn")
-
+var set_background = false
 
 func sort_by_fish_name(a, b):
 	return a["weight"] < b["weight"]
@@ -10,6 +10,7 @@ func sort_by_fish_name(a, b):
 func _ready() -> void:
 	var fish_list: Array = load("user://fish_lists/%s.json" % difficulty_fish).data
 	var fish_display_instance
+	
 	fish_list.sort_custom(sort_by_fish_name)
 	for fish in fish_list:
 		#creates a new fish_display in the grid container, to make the grid
@@ -29,5 +30,16 @@ func _ready() -> void:
 		#putting it in the gridcontainer makes it all go into a nice grid
 		$GridContainer.add_child(fish_display_instance)
 
+
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_visibility_changed() -> void:
+	#makes the background as large as the grid container on the y axis
+	#I think the await makes it work because otherwise the gridcontainer size hasn't changed yet
+	#idfk fmstl
+	await $GridContainer.draw
+	$Background.custom_minimum_size.y = $GridContainer.size.y
+	print($GridContainer.size.y)
+	set_background = true

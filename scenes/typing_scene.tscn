@@ -166,6 +166,7 @@ offset_bottom = 1080.0
 texture = ExtResource("8_bcbk5")
 
 [node name="Midground" type="TextureRect" parent="FishingGraphics"]
+visible = false
 offset_left = -20.0
 offset_right = 1940.0
 offset_bottom = 1080.0

@@ -36,7 +36,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="TextureRect" type="TextureRect" parent="TabContainer/The Pond!"]
+[node name="Background" type="TextureRect" parent="TabContainer/The Pond!"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -59,6 +59,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
+[node name="Background" type="TextureRect" parent="TabContainer/The Ocean!"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_ghl7p")
+expand_mode = 1
+stretch_mode = 1
+
 [node name="The Depths!" type="ScrollContainer" parent="TabContainer"]
 visible = false
 custom_minimum_size = Vector2(1920, 0)
@@ -75,7 +83,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
+[node name="Background" type="TextureRect" parent="TabContainer/The Depths!"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_ghl7p")
+expand_mode = 1
+stretch_mode = 1
+
 [node name="Button" type="Button" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.935
@@ -88,4 +105,7 @@ offset_bottom = 1058.4
 text = "Back"
 script = ExtResource("3_y8ai4")
 
+[connection signal="visibility_changed" from="TabContainer/The Pond!" to="TabContainer/The Pond!" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="TabContainer/The Ocean!" to="TabContainer/The Ocean!" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="TabContainer/The Depths!" to="TabContainer/The Depths!" method="_on_visibility_changed"]
 [connection signal="pressed" from="Button" to="Button" method="load_new_scene" binds= ["res://scenes/main_menu.tscn"]]
