@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bndkaxcgtomh3"]
+[gd_scene load_steps=12 format=3 uid="uid://bndkaxcgtomh3"]
 
 [ext_resource type="Script" path="res://scripts/typing_scene.gd" id="1_4430f"]
 [ext_resource type="Theme" uid="uid://b38hgryrud55i" path="res://assets/themes/easy_theme.tres" id="2_tqlya"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dvvsvih65qakf" path="res://assets/images/bob.png" id="5_1o12r"]
 [ext_resource type="Texture2D" uid="uid://c6e3oghcymowe" path="res://assets/ui/backgrounds/easy_background.png" id="8_bcbk5"]
 [ext_resource type="Texture2D" uid="uid://uat71opfgxal" path="res://assets/ui/backgrounds/easy_foreground.png" id="9_50pos"]
+[ext_resource type="Texture2D" uid="uid://fsm3mhoypnyb" path="res://assets/ui/backgrounds/hard_midground.png" id="9_ec1an"]
+[ext_resource type="Script" path="res://scripts/midground sway.gd" id="10_c5q3w"]
 
 [node name="TypingScene" type="Node2D"]
 script = ExtResource("1_4430f")
@@ -162,6 +164,13 @@ texture = ExtResource("5_1o12r")
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("8_bcbk5")
+
+[node name="Midground" type="TextureRect" parent="FishingGraphics"]
+offset_left = -20.0
+offset_right = 1940.0
+offset_bottom = 1080.0
+texture = ExtResource("9_ec1an")
+script = ExtResource("10_c5q3w")
 
 [node name="Foreground" type="TextureRect" parent="FishingGraphics"]
 z_index = 2

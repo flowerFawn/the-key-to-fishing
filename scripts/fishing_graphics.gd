@@ -8,6 +8,8 @@ var max_bob_distance: int = 0
 func _ready() -> void:
 	$Background.texture = load("res://assets/ui/backgrounds/%s_background.png" % Game.difficulty)
 	$Foreground.texture = load("res://assets/ui/backgrounds/%s_foreground.png" % Game.difficulty)
+	if Game.difficulty == "hard":
+		$Midground.visible = true
 	if Game.difficulty != "easy":
 		var ship_sway_distance:int
 		var ship_sway_tween
