@@ -130,6 +130,7 @@ theme_override_font_sizes/mono_font_size = 200
 theme_override_font_sizes/normal_font_size = 200
 theme_override_font_sizes/bold_font_size = 200
 bbcode_enabled = true
+fit_content = true
 script = ExtResource("4_54bab")
 
 [node name="VisualInputBox" type="Sprite2D" parent="CanvasLayer/Control"]

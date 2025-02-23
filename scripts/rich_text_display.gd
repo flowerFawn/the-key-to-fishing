@@ -16,6 +16,13 @@ func _process(delta: float) -> void:
 	pass
 
 
+
+func resize_richtext():
+	#if the text makes the box larger than it's default size, the font is decreased in increments of 16
+	add_theme_font_size_override("normal_font_size", 200)
+	while size.y > 265:
+		add_theme_font_size_override("normal_font_size", get_theme_font_size("normal_font_size") - 16)
+
 func _on_input_box_text_changed(new_text: String) -> void:
 	var coloured_text:String = ""
 	var i:int = 0
@@ -63,3 +70,4 @@ func _on_input_box_text_changed(new_text: String) -> void:
 	#coloured_text = coloured_text.right(-8)
 	print(coloured_text)
 	text = coloured_text
+	resize_richtext()
