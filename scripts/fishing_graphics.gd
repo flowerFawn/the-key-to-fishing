@@ -19,7 +19,7 @@ func _ready() -> void:
 			ship_sway_distance = 20
 		while true:
 			ship_sway_tween = create_tween()
-			ship_sway_tween.tween_property($Foreground, "position", Vector2(randi_range(-ship_sway_distance, ship_sway_distance), randi_range(0, ship_sway_distance * 2)), randi_range(1, 3))
+			ship_sway_tween.tween_property($Foreground, "position", Vector2(randi_range(-ship_sway_distance, ship_sway_distance), randi_range(0, ship_sway_distance * 2)), randf_range(1, 3))
 			await ship_sway_tween.finished
 			
 func _process(delta: float) -> void:
