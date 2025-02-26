@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://52a1nk4wpguw"]
+[gd_scene load_steps=4 format=3 uid="uid://52a1nk4wpguw"]
 
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_v1qvd"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="2_bjc8q"]
+[ext_resource type="Texture2D" uid="uid://ntoxgurc42ew" path="res://assets/ui/backgrounds/wood_planks_background.png" id="3_gs3tm"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,6 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_v1qvd")
 script = ExtResource("2_bjc8q")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_gs3tm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
