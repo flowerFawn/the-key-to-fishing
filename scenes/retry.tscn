@@ -1,8 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://srdyjy0itmfh"]
+[gd_scene load_steps=6 format=3 uid="uid://srdyjy0itmfh"]
 
-[ext_resource type="Theme" uid="uid://c1b0kismygoju" path="res://assets/themes/hard_theme.tres" id="1_rwgbm"]
-[ext_resource type="Script" path="res://scripts/button_link.gd" id="2_6q5ie"]
-[ext_resource type="Script" path="res://scripts/set_self_theme.gd" id="2_dv7mb"]
+[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_3xuul"]
+[ext_resource type="Texture2D" uid="uid://ntoxgurc42ew" path="res://assets/ui/backgrounds/wood_planks_background.png" id="3_d4yil"]
+[ext_resource type="Script" path="res://scripts/retry background.gd" id="3_mliw5"]
+
+[sub_resource type="GDScript" id="GDScript_1rbb4"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	theme = load(\"res://assets/themes/%s_theme.tres\" % Game.difficulty)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_dna53"]
+script/source = "extends Button
+@export var grabs_focus: bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if grabs_focus:
+		grab_focus()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func load_new_scene(path: String):
+	get_tree().change_scene_to_file(path)
+"
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,9 +47,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_rwgbm")
-script = ExtResource("2_dv7mb")
+theme = ExtResource("1_3xuul")
+script = SubResource("GDScript_1rbb4")
 metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_d4yil")
+script = ExtResource("3_mliw5")
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -41,7 +80,7 @@ offset_top = 168.0
 offset_right = 575.0
 offset_bottom = 487.0
 text = "Yes!"
-script = ExtResource("2_6q5ie")
+script = SubResource("GDScript_dna53")
 grabs_focus = true
 
 [node name="Back" type="Button" parent="CanvasLayer/Control"]
@@ -51,7 +90,7 @@ offset_top = 608.0
 offset_right = 1888.0
 offset_bottom = 1078.0
 text = "No"
-script = ExtResource("2_6q5ie")
+script = SubResource("GDScript_dna53")
 
 [connection signal="pressed" from="CanvasLayer/Control/Again" to="CanvasLayer/Control/Again" method="load_new_scene" binds= ["res://scenes/typing_scene.tscn"]]
 [connection signal="pressed" from="CanvasLayer/Control/Back" to="CanvasLayer/Control/Back" method="load_new_scene" binds= ["res://scenes/difficulty_select.tscn"]]

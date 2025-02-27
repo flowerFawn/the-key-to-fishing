@@ -1,8 +1,36 @@
 [gd_scene load_steps=4 format=3 uid="uid://52a1nk4wpguw"]
 
-[ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_v1qvd"]
-[ext_resource type="Script" path="res://scripts/settings.gd" id="2_bjc8q"]
-[ext_resource type="Texture2D" uid="uid://ntoxgurc42ew" path="res://assets/ui/backgrounds/wood_planks_background.png" id="3_gs3tm"]
+[ext_resource type="Theme" uid="uid://bemmrl5ab4tsx" path="res://assets/themes/medium_theme.tres" id="1_spihh"]
+[ext_resource type="Texture2D" uid="uid://cy6dcl304ovs3" path="res://assets/ui/backgrounds/fish_view_harder_background.png" id="2_spfma"]
+
+[sub_resource type="GDScript" id="GDScript_qgv4g"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
+
+func back_to_main_menu():
+	get_tree().change_scene_to_file(\"res://scenes/main_menu.tscn\")
+	
+
+func reset_data():
+	#goes through the default json files, and overwrites the user jsons with the same name with the contents of the default.
+	var default_data: Array = []
+	var new_data_location: FileAccess
+	for difficulty in [\"easy\", \"medium\", \"hard\"]:
+		new_data_location = FileAccess.open(\"user://fish_lists/%s.json\" % difficulty, FileAccess.WRITE)
+		default_data = load(\"res://fish_lists/%s.json\" % difficulty).data
+		new_data_location.store_string(JSON.stringify(default_data, \"\\t\"))
+		new_data_location.close()
+"
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,14 +39,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_v1qvd")
-script = ExtResource("2_bjc8q")
+theme = ExtResource("1_spihh")
+script = SubResource("GDScript_qgv4g")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("3_gs3tm")
+texture = ExtResource("2_spfma")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -43,7 +71,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "Reset Data: spooky button!!!!"
+text = "Reset Data"
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 layout_mode = 2

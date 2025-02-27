@@ -1,9 +1,73 @@
 [gd_scene load_steps=5 format=3 uid="uid://y4rknhaalhw"]
 
 [ext_resource type="Theme" uid="uid://qjmal2ehrfr1" path="res://assets/themes/main_theme.tres" id="1_j13ig"]
-[ext_resource type="Script" path="res://scripts/gallery_tab.gd" id="2_07r6k"]
 [ext_resource type="Texture2D" uid="uid://dhij6r5u7lqgj" path="res://assets/ui/backgrounds/wood_planks_resized_background_.png" id="3_ghl7p"]
-[ext_resource type="Script" path="res://scripts/button_link.gd" id="3_y8ai4"]
+
+[sub_resource type="GDScript" id="GDScript_e3sx0"]
+script/source = "extends ScrollContainer
+@export var difficulty_fish: String = \"easy\" #the fish list that will be read from. In lower case, easy, medium, hard
+var default_fish_display = preload(\"res://scenes/default_fish_display.tscn\")
+var set_background = false
+
+func sort_by_fish_name(a, b):
+	return a[\"weight\"] < b[\"weight\"]
+
+
+func _ready() -> void:
+	var fish_list: Array = load(\"user://fish_lists/%s.json\" % difficulty_fish).data
+	var fish_display_instance
+	
+	fish_list.sort_custom(sort_by_fish_name)
+	for fish in fish_list:
+		#creates a new fish_display in the grid container, to make the grid
+		fish_display_instance = default_fish_display.instantiate()
+		if fish[\"caught\"] > 0:
+			#if it has been caught it shows the fish. eventually this will include the image
+			fish_display_instance.image_path = fish[\"image\"]
+			fish_display_instance.fish_name = fish[\"name\"]
+			fish_display_instance.caught = fish[\"caught\"]
+			fish_display_instance.biggest_catch = fish[\"biggest_catch\"]
+		else:
+			#otherwise it will show a black default fish, and ??? as the name
+			fish_display_instance.image_path = \"res://assets/fish_images/uncaught.png\"
+			fish_display_instance.fish_name = \"???\"
+			fish_display_instance.caught = 0
+			fish_display_instance.biggest_catch = 0
+		#putting it in the gridcontainer makes it all go into a nice grid
+		$GridContainer.add_child(fish_display_instance)
+
+
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_visibility_changed() -> void:
+	#makes the background as large as the grid container on the y axis
+	#I think the await makes it work because otherwise the gridcontainer size hasn't changed yet
+	#idfk fmstl
+	await $GridContainer.draw
+	$Background.custom_minimum_size.y = $GridContainer.size.y
+	print($GridContainer.size.y)
+	set_background = true
+"
+
+[sub_resource type="GDScript" id="GDScript_dna53"]
+script/source = "extends Button
+@export var grabs_focus: bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if grabs_focus:
+		grab_focus()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func load_new_scene(path: String):
+	get_tree().change_scene_to_file(path)
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -25,7 +89,7 @@ current_tab = 0
 
 [node name="The Pond!" type="ScrollContainer" parent="TabContainer"]
 layout_mode = 2
-script = ExtResource("2_07r6k")
+script = SubResource("GDScript_e3sx0")
 metadata/_tab_index = 0
 
 [node name="GridContainer" type="GridContainer" parent="TabContainer/The Pond!"]
@@ -47,7 +111,7 @@ stretch_mode = 1
 [node name="The Ocean!" type="ScrollContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("2_07r6k")
+script = SubResource("GDScript_e3sx0")
 difficulty_fish = "medium"
 metadata/_tab_index = 1
 
@@ -71,7 +135,7 @@ stretch_mode = 1
 visible = false
 custom_minimum_size = Vector2(1920, 0)
 layout_mode = 2
-script = ExtResource("2_07r6k")
+script = SubResource("GDScript_e3sx0")
 difficulty_fish = "hard"
 metadata/_tab_index = 2
 
@@ -103,7 +167,7 @@ offset_top = 978.0
 offset_right = -1724.0
 offset_bottom = 1058.4
 text = "Back"
-script = ExtResource("3_y8ai4")
+script = SubResource("GDScript_dna53")
 
 [connection signal="visibility_changed" from="TabContainer/The Pond!" to="TabContainer/The Pond!" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="TabContainer/The Ocean!" to="TabContainer/The Ocean!" method="_on_visibility_changed"]

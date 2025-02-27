@@ -1,20 +1,353 @@
 [gd_scene load_steps=13 format=3 uid="uid://bndkaxcgtomh3"]
 
-[ext_resource type="Script" path="res://scripts/typing_scene.gd" id="1_4430f"]
 [ext_resource type="Theme" uid="uid://b38hgryrud55i" path="res://assets/themes/easy_theme.tres" id="2_tqlya"]
-[ext_resource type="Script" path="res://scripts/button_link.gd" id="3_7a13b"]
-[ext_resource type="Script" path="res://scripts/rich_text_display.gd" id="4_54bab"]
-[ext_resource type="Script" path="res://scripts/fishing_graphics.gd" id="4_o8q2k"]
 [ext_resource type="Texture2D" uid="uid://cy2d5ayix2b6a" path="res://assets/ui/buttons/easy_inputbox.png" id="5_1f7rj"]
 [ext_resource type="Texture2D" uid="uid://dvvsvih65qakf" path="res://assets/images/bob.png" id="5_1o12r"]
-[ext_resource type="Script" path="res://scripts/lightning_controller.gd" id="8_0dqrm"]
 [ext_resource type="Texture2D" uid="uid://c6e3oghcymowe" path="res://assets/ui/backgrounds/easy_background.png" id="8_bcbk5"]
 [ext_resource type="Texture2D" uid="uid://uat71opfgxal" path="res://assets/ui/backgrounds/easy_foreground.png" id="9_50pos"]
 [ext_resource type="Texture2D" uid="uid://fsm3mhoypnyb" path="res://assets/ui/backgrounds/hard_midground.png" id="9_ec1an"]
-[ext_resource type="Script" path="res://scripts/midground sway.gd" id="10_c5q3w"]
+
+[sub_resource type="GDScript" id="GDScript_8rg4r"]
+script/source = "extends Node2D
+var random = RandomNumberGenerator.new()
+const SIZE_PULLS: Dictionary = {\"small\":1, \"medium\":2, \"big\":3, \"large\":4, \"huge\":5, \"massive\":6, \"gigantic\":8, \"Incomprehensible\":12}
+var fish_list: Array = load(\"user://fish_lists/%s.json\" % Game.difficulty).data
+var fish: Dictionary = {}
+var goal_word: String = \"\"
+var state: String = \"starting\"
+var word_list: Array = load(\"res://word_lists/%s.json\" % Game.difficulty).data
+var first_wait: bool = true
+var pulls_left: int = 0
+var total_time_left: float = 0
+var fish_index: int = 0
+var total_length: int = 0
+func _ready() -> void:
+	$CanvasLayer/Control.theme = load(\"res://assets/themes/%s_theme.tres\" % Game.difficulty)
+	$CanvasLayer/Control/VisualInputBox.texture = load(\"res://assets/ui/buttons/%s_inputbox.png\" % Game.difficulty)
+	var difficulty_times = {\"easy\":4, \"medium\":5, \"hard\":6}
+	$TimeLeft.wait_time = difficulty_times[Game.difficulty]
+	#picks a fish so that it can be used in the view and to determine amount of pulls
+	fish_index = random.randi_range(0,len(fish_list) - 1)
+	fish = fish_list[fish_index]
+	#sets amount of pulls based on size
+	pulls_left = SIZE_PULLS[fish[\"size\"]]
+	#grab focus is used a lot in this so the user doesn't have to click on an input to start typing
+	$CanvasLayer/Control/CastButton.grab_focus()
+
+
+func _process(_delta: float) -> void:
+	#calls that ... .. . thingy when it should be happening
+	if state == \"waiting\" and $CanvasLayer/Control/WordDisplay.text == \"Fishing for fishes\" or $CanvasLayer/Control/WordDisplay.text == \"Pulling the fishie back in\":
+		waiting_text_dot_cycle()
+
+func waiting_text_dot_cycle():
+	#does that ... .. . thingy, and changes the text depending if it's fishing or pulling
+	for _a in range(3):
+		if state == \"waiting\":
+			$CanvasLayer/Control/WordDisplay.text = $CanvasLayer/Control/WordDisplay.text + \".\"
+			await get_tree().create_timer(0.5).timeout
+		else:
+			break
+	await get_tree().create_timer(0.5).timeout
+	if state == \"waiting\" and first_wait:
+		$CanvasLayer/Control/WordDisplay.text = \"Fishing for fishes\"
+	elif state == \"waiting\" and not first_wait:
+		$CanvasLayer/Control/WordDisplay.text = \"Pulling the fishie back in\"
+
+
+func start_waiting():
+	$CanvasLayer/Control/CastButton.text = \"Splish!\"
+	#changes the state so the input can't be changed
+	state = \"waiting\"
+	#disables the button so it can't be used anymore, starting the wait again
+	$CanvasLayer/Control/CastButton.disabled = true
+	#changes displayed text based on if it's fishing or pulling
+	if first_wait:
+		$CanvasLayer/Control/WordDisplay.text = \"Fishing for fishes\"
+	else:
+		$CanvasLayer/Control/WordDisplay.text = \"Pulling the fishie back in\"
+	$TimeToBob.wait_time = random.randf_range(2.0, 5.0)
+	#starts the timer to give a wait time till the next word appears
+	$TimeToBob.start()
+
+
+func get_word():
+	var new_word = word_list.pick_random()
+	$CanvasLayer/Control/RichTextDisplay.goal_word = new_word
+	return new_word
+	
+func start_typing():
+	#changes, so that next time the text will be for pulling the fishie back in
+	if first_wait:
+		first_wait = false
+	state = \"typing\"
+	goal_word = get_word()
+	total_length += len(goal_word)
+	#sets the player to already be selected on the input as soon as they can type
+	#starts the timer that counts how long they have spent
+	$CanvasLayer/Control/InputBox.text = \"\"
+	$CanvasLayer/Control/CastButton.text = \"Type: %s!\" % goal_word
+	$CanvasLayer/Control/WordDisplay.text = \"It's a %s shadow!\" % fish[\"size\"]
+	$CanvasLayer/Control/RichTextDisplay._on_input_box_text_changed(\"\")
+	await get_tree().create_timer(0.5).timeout
+	#the input box is only actually made useable at this point
+	$CanvasLayer/Control/InputBox.editable = true
+	$CanvasLayer/Control/InputBox.grab_focus()
+	$TimeLeft.start()
+	
+	
+func _on_input_box_text_changed(new_text: String) -> void:
+	#every time the text in the input is changed it checks if they finished the word
+	if new_text.to_lower() == goal_word and state == \"typing\":
+		pulls_left -= 1
+		#total_time_left is eventually used to calculate percentage of time remaining
+		total_time_left += $TimeLeft.time_left
+		$TimeLeft.stop()
+		#stops the user editing the input while fishing is going on
+		$CanvasLayer/Control/InputBox.editable = false
+		if pulls_left == 0:
+			$CanvasLayer/Control/WordDisplay.text = \"You caught it!\"
+			state = \"success\"
+			#to be used to multiply weight
+			var time_left_percentage = total_time_left / ($TimeLeft.wait_time * SIZE_PULLS[fish[\"size\"]])
+			var time_multiplier = (time_left_percentage / 2) + 0.8
+			#sets length_multiplier to the average length of a word this fish as 1% each, plus 1
+			var length_multiplier = (float(total_length / SIZE_PULLS[fish[\"size\"]] ) / 100) + 1
+			var total_multiplier = time_multiplier * length_multiplier * random.randf_range(0.95, 1.05)
+			#stores them all in the autoload Game so that the fish_view.gd script can use them
+			Game.last_multiplier = total_multiplier
+			Game.caught_fish = fish
+			Game.fish_index = fish_index
+			#makes the button that brings you to fish_view visible, and leaves the button that brings you to retry invisible
+			$CanvasLayer/Control/ToFishView.disabled = false
+			$CanvasLayer/Control/ToFishView.visible = true
+			$CanvasLayer/Control/ToFishView.grab_focus()
+		else:
+			#starts the game again if the pulls are not all complete
+			start_waiting()
+
+func time_finished() -> void:
+	if state == \"typing\":
+		state = \"failed\"
+		#stops the user editing their input after losing
+		$CanvasLayer/Control/InputBox.editable = false
+		$CanvasLayer/Control/WordDisplay.text = \"The fish got away!\"
+		#makes the button to retry appear
+		$CanvasLayer/Control/ToRetry.disabled = false
+		$CanvasLayer/Control/ToRetry.visible = true
+
+
+func _on_input_box_focus_exited() -> void:
+	print(state)
+	if state == \"typing\":
+		await get_tree().create_timer(0.00000001).timeout
+		$CanvasLayer/Control/InputBox.grab_focus()
+"
+
+[sub_resource type="GDScript" id="GDScript_dna53"]
+script/source = "extends Button
+@export var grabs_focus: bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if grabs_focus:
+		grab_focus()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func load_new_scene(path: String):
+	get_tree().change_scene_to_file(path)
+"
+
+[sub_resource type="GDScript" id="GDScript_an0yl"]
+script/source = "extends RichTextLabel
+
+var goal_word:String
+var untyped_colour:String
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	#the normal grey doesn't show up well on the medium ui, so I made it a different colour on medium
+	if Game.difficulty == \"medium\":
+		untyped_colour = \"#7c7c7c\"
+	else:
+		untyped_colour = \"gray\"
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func resize_richtext():
+	#if the text makes the box larger than it's default size, the font is decreased in increments of 16
+	add_theme_font_size_override(\"normal_font_size\", 200)
+	while size.y > 265:
+		add_theme_font_size_override(\"normal_font_size\", get_theme_font_size(\"normal_font_size\") - 16)
+
+func _on_input_box_text_changed(new_text: String) -> void:
+	var coloured_text:String = \"\"
+	var i:int = 0
+	var goal_character:String = \"\"
+	var current_colour:String = \"\"
+	#for each charcater in the input box text it is either made red or white
+	#red if it is accurate to the equivilent character in the goal word, red if not
+	#if it goes out of bounds for the goal word, it is red
+	#once all characters in the inputted text are done, the remainder of the goal word is added in grey
+	#adds [/color] if it needs to change colour, to end that part, and adds a new [color=colour] to set the new colour
+	for character in new_text:
+		#if in bounds gets the character it should be
+		if len(goal_word) - 1 >= i:
+			goal_character = goal_word[i]
+		else:
+			goal_character = \"oob\"
+		#if the character's position is out of bounds of the goal word, or isn't the goal character, it is made red
+		if len(goal_word) - 1 < i or character != goal_character:
+			if current_colour != \"red\":
+				if i == 0:
+					coloured_text += \"\".join([\"[color=red]\", character])
+				else:
+					coloured_text += \"\".join([\"[/color][color=red]\", character])
+				current_colour = \"red\"
+			else:
+				coloured_text += character
+		#if it is in the correct place, it is made white
+		else:
+			if current_colour != \"white\":
+				if i == 0:
+					coloured_text += \"\".join([\"[color=white]\", character])
+				else:
+					coloured_text += \"\".join([\"[/color][color=white]\", character])
+				current_colour = \"white\"
+			else:
+				coloured_text += character
+		#i is the index, used for both the input text and goal word character to be compared to each other
+		i += 1
+	if len(goal_word) > i:
+		#adds the rest of the goal word to the end
+		coloured_text += \"[color=%s]\" % untyped_colour
+		coloured_text += goal_word.right(len(goal_word) - (i))
+	coloured_text += \"[/color]\"
+		
+	#coloured_text = coloured_text.right(-8)
+	print(coloured_text)
+	text = coloured_text
+	resize_richtext()
+"
+
+[sub_resource type="GDScript" id="GDScript_qa1tm"]
+script/source = "extends Node2D
+var random = RandomNumberGenerator.new()
+var state: String = \"starting\"
+var bob_moving:bool = false
+var min_bob_distance: int = 0
+var max_bob_distance: int = 0
+
+func _ready() -> void:
+	$Background.texture = load(\"res://assets/ui/backgrounds/%s_background.png\" % Game.difficulty)
+	$Foreground.texture = load(\"res://assets/ui/backgrounds/%s_foreground.png\" % Game.difficulty)
+	if Game.difficulty == \"hard\":
+		$Midground.visible = true
+	if Game.difficulty != \"easy\":
+		var ship_sway_distance:int
+		var ship_sway_tween
+		if Game.difficulty == \"medium\":
+			ship_sway_distance = 10
+		elif Game.difficulty == \"hard\":
+			ship_sway_distance = 20
+		while true:
+			ship_sway_tween = create_tween()
+			ship_sway_tween.tween_property($Foreground, \"position\", Vector2(randi_range(-ship_sway_distance, ship_sway_distance), randi_range(0, ship_sway_distance * 2)), randf_range(1, 3))
+			await ship_sway_tween.finished
+			
+func _process(delta: float) -> void:
+	state = get_parent().state
+	$Line2D.points[1] = $Bob.position + Vector2(4, -70)
+	if state == \"waiting\":
+		min_bob_distance = -50
+		max_bob_distance = 50
+	if state == \"typing\":
+		min_bob_distance = -15
+		max_bob_distance = 15
+	if (state == \"waiting\" or state == \"typing\") and not bob_moving:
+		#once the bob is static it is then moved to a random point over a random amount of time
+		bob_moving = true
+		var bob_movement_tween = create_tween()
+		bob_movement_tween.tween_property($Bob, \"position\", get_bob_final_pos(), random.randf_range(0.6, 1))
+		#once the tween finishes the flag is made false, so it can be started again
+		await bob_movement_tween.finished
+		bob_moving = false
+
+
+func clamp(n, min, max):
+	if n > max:
+		return max
+	elif min > n:
+		return min
+	else:
+		return n
+
+
+func get_bob_final_pos():
+	#returns a point a random amount away from the bob, within certain a certain area
+	var final_pos = Vector2(0, 0)
+	final_pos.x = clamp($Bob.position.x + random.randi_range(min_bob_distance, max_bob_distance), 250, 1670)
+	final_pos.y = clamp($Bob.position.y + random.randi_range(min_bob_distance, max_bob_distance), 100, 700)
+	return final_pos
+"
+
+[sub_resource type="GDScript" id="GDScript_qwf22"]
+script/source = "extends ColorRect
+var r = RandomNumberGenerator.new()
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if Game.difficulty == \"hard\":
+		visible = true
+		color = Color(0.75, 0.75, 0.75)
+		while true:
+			#changes the colour to look like lightning striking
+			await get_tree().create_timer(r.randf_range(3, 10)).timeout
+			strike()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func strike():
+	var tweener
+	tweener = create_tween()
+	tweener.tween_property(self, \"color\", Color(1, 1, 1), r.randf_range(0.1, 0.2))
+	await tweener.finished
+	await get_tree().create_timer(r.randf_range(0.1, 0.15)).timeout
+	tweener = create_tween()
+	tweener.tween_property(self, \"color\", Color(0.75, 0.75, 0.75), r.randf_range(0.05, 0.15))
+	await tweener.finished
+"
+
+[sub_resource type="GDScript" id="GDScript_xga0i"]
+script/source = "extends TextureRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var waves_tween
+	var wave_distance = 20
+	while true:
+		waves_tween = create_tween()
+		waves_tween.tween_property(self, \"position\", Vector2(randi_range(-wave_distance, wave_distance) - 20, randi_range(0, wave_distance * 2)), randf_range(1, 3))
+		await waves_tween.finished
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="TypingScene" type="Node2D"]
-script = ExtResource("1_4430f")
+script = SubResource("GDScript_8rg4r")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -92,7 +425,7 @@ grow_horizontal = 2
 grow_vertical = 0
 disabled = true
 text = "What is it?"
-script = ExtResource("3_7a13b")
+script = SubResource("GDScript_dna53")
 
 [node name="ToRetry" type="Button" parent="CanvasLayer/Control"]
 visible = false
@@ -111,7 +444,7 @@ grow_horizontal = 2
 grow_vertical = 0
 disabled = true
 text = "Maybe next time!"
-script = ExtResource("3_7a13b")
+script = SubResource("GDScript_dna53")
 
 [node name="RichTextDisplay" type="RichTextLabel" parent="CanvasLayer/Control"]
 z_index = 3
@@ -132,7 +465,7 @@ theme_override_font_sizes/normal_font_size = 200
 theme_override_font_sizes/bold_font_size = 200
 bbcode_enabled = true
 fit_content = true
-script = ExtResource("4_54bab")
+script = SubResource("GDScript_an0yl")
 
 [node name="VisualInputBox" type="Sprite2D" parent="CanvasLayer/Control"]
 z_index = 2
@@ -149,7 +482,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="FishingGraphics" type="Node2D" parent="."]
-script = ExtResource("4_o8q2k")
+script = SubResource("GDScript_qa1tm")
 
 [node name="Line2D" type="Line2D" parent="FishingGraphics"]
 points = PackedVector2Array(960, 0, 965, 781)
@@ -167,7 +500,7 @@ visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.764706, 0.764706, 0.764706, 1)
-script = ExtResource("8_0dqrm")
+script = SubResource("GDScript_qwf22")
 
 [node name="Background" type="TextureRect" parent="FishingGraphics"]
 offset_right = 1920.0
@@ -180,7 +513,7 @@ offset_left = -20.0
 offset_right = 1940.0
 offset_bottom = 1080.0
 texture = ExtResource("9_ec1an")
-script = ExtResource("10_c5q3w")
+script = SubResource("GDScript_xga0i")
 
 [node name="Foreground" type="TextureRect" parent="FishingGraphics"]
 z_index = 2

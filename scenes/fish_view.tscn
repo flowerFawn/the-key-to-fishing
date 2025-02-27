@@ -1,12 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcsn1w72ecel1"]
+[gd_scene load_steps=7 format=3 uid="uid://dcsn1w72ecel1"]
 
-[ext_resource type="Script" path="res://scripts/fish_view.gd" id="1_tpi2d"]
 [ext_resource type="Theme" uid="uid://c1b0kismygoju" path="res://assets/themes/hard_theme.tres" id="2_te6y1"]
 [ext_resource type="Texture2D" uid="uid://d1ack4ko6yihv" path="res://assets/fish_images/placeholder.png" id="3_8bf20"]
-[ext_resource type="Script" path="res://scripts/button_link.gd" id="3_cwf8j"]
+[ext_resource type="Texture2D" uid="uid://ntoxgurc42ew" path="res://assets/ui/backgrounds/wood_planks_background.png" id="3_o2nbp"]
+[ext_resource type="Texture2D" uid="uid://chhfkk0fbtxvw" path="res://assets/images/plaque.png" id="3_suhtw"]
+
+[sub_resource type="GDScript" id="GDScript_e48lr"]
+script/source = "extends Node2D
+var random = RandomNumberGenerator.new()
+var fish_list: Array = load(\"user://fish_lists/%s.json\" % Game.difficulty).data
+var fish: Dictionary = {}
+var fish_file: FileAccess
+var fish_weight: float = 0.0
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if Game.difficulty != \"easy\":
+		$CanvasLayer/Control/Background.texture = load(\"res://assets/ui/backgrounds/fish_view_harder_background.png\")
+	$CanvasLayer/Control.theme = load(\"res://assets/themes/%s_theme.tres\" % Game.difficulty)
+	#fish is set here to bring it from typing_scene to fish_view
+	fish = Game.caught_fish
+	#removes the fish caught from the list, so it can be replaced with an updated entry
+	fish_list.pop_at(Game.fish_index)
+	fish[\"caught\"] = fish[\"caught\"] + 1
+	#finds the final fish weight based on the multiplier and a preset value
+	fish_weight = fish[\"weight\"] * Game.last_multiplier
+	#stores the users biggest weight for this fish, if the new weight is the biggest
+	if fish[\"biggest_catch\"] < fish_weight:
+		fish[\"biggest_catch\"] = snapped(fish_weight, 0.01)
+	#adds it back, and writes it to the json, so fish caught and biggest weight persist
+	fish_list.append(fish)
+	fish_file = FileAccess.open(\"user://fish_lists/%s.json\" % Game.difficulty, FileAccess.WRITE)
+	fish_file.store_string(JSON.stringify(fish_list, \"\\t\"))
+	fish_file.close()
+	#shows the user all the statistics
+	if ResourceLoader.exists(fish[\"image\"]):
+		$CanvasLayer/Control/Image.texture = load(fish[\"image\"])
+	$CanvasLayer/Control/Description.text = fish[\"desc\"]
+	$CanvasLayer/Control/Name.text = fish[\"name\"]
+	$CanvasLayer/Control/VBoxContainer/Caught.text = \"caught: %s\" % fish[\"caught\"]
+	$CanvasLayer/Control/VBoxContainer/Weight.text = \"weight: %slbs\" % snapped(fish_weight, 0.01)
+	$CanvasLayer/Control/VBoxContainer/Size.text = \"size: %s\" % fish[\"size\"]
+	$CanvasLayer/Control/Next.grab_focus()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_dna53"]
+script/source = "extends Button
+@export var grabs_focus: bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if grabs_focus:
+		grab_focus()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func load_new_scene(path: String):
+	get_tree().change_scene_to_file(path)
+"
 
 [node name="FishView" type="Node2D"]
-script = ExtResource("1_tpi2d")
+script = SubResource("GDScript_e48lr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -19,6 +79,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_te6y1")
 metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_o2nbp")
 
 [node name="Description" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -52,7 +118,14 @@ offset_top = 849.0
 offset_right = 736.0
 offset_bottom = 1080.0
 text = "Throw it back in!"
-script = ExtResource("3_cwf8j")
+script = SubResource("GDScript_dna53")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_top = 187.0
+offset_right = 800.0
+offset_bottom = 687.0
+texture = ExtResource("3_suhtw")
 
 [node name="Image" type="Sprite2D" parent="CanvasLayer/Control"]
 position = Vector2(394, 429)
