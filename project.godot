@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="The Key to Fishing"
 run/main_scene="res://scenes/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -24,6 +28,10 @@ Game="*res://scripts/game.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
+
+[dotnet]
+
+project/assembly_name="The Key to Fishing"
 
 [rendering]
 

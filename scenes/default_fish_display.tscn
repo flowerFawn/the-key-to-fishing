@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c868lbl0xgjdb"]
+[gd_scene format=3 uid="uid://c868lbl0xgjdb"]
 
 [ext_resource type="Theme" uid="uid://c1b0kismygoju" path="res://assets/themes/hard_theme.tres" id="1_c4aoq"]
 [ext_resource type="Texture2D" uid="uid://d1ack4ko6yihv" path="res://assets/fish_images/placeholder.png" id="1_tswmb"]
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[node name="FishDisplay" type="VBoxContainer"]
+[node name="FishDisplay" type="VBoxContainer" unique_id=108181471]
 z_index = 1
 offset_left = -200.0
 offset_top = -200.0
@@ -37,20 +37,20 @@ theme = ExtResource("1_c4aoq")
 alignment = 1
 script = SubResource("GDScript_jeljs")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=88191980]
 custom_minimum_size = Vector2(384, 216)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Plaque" type="TextureRect" parent="Control"]
+[node name="Plaque" type="TextureRect" parent="Control" unique_id=1053402566]
 layout_mode = 0
 offset_right = 400.0
 offset_bottom = 250.0
 texture = ExtResource("3_ro0k5")
 
-[node name="Image" type="TextureRect" parent="Control"]
-layout_mode = 2
+[node name="Image" type="TextureRect" parent="Control" unique_id=799271824]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 17.0
 offset_right = 392.0
@@ -59,17 +59,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_tswmb")
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=1105250444]
 layout_mode = 2
 text = "Name"
 horizontal_alignment = 1
 
-[node name="Caught" type="Label" parent="."]
+[node name="Caught" type="Label" parent="." unique_id=726503950]
 layout_mode = 2
 text = "Caught"
 horizontal_alignment = 1
 
-[node name="BiggestCatch" type="Label" parent="."]
+[node name="BiggestCatch" type="Label" parent="." unique_id=885541474]
 layout_mode = 2
 text = "Biggest Catch"
 horizontal_alignment = 1

@@ -20,7 +20,7 @@
 	{
 		"biggest_catch": 0,
 		"caught": 0,
-		"desc": "doesn't work as well as a weapon as I had hoped qwq.",
+		"desc": "doesn't work as well as a weapon as I had hoped.",
 		"image": "res://assets/fish_images/pike.png",
 		"name": "Pike",
 		"size": "medium",
@@ -38,7 +38,7 @@
 	{
 		"biggest_catch": 0,
 		"caught": 0,
-		"desc": "Not a kbity qwq. Kinda like catgirls but less of them are transgender.",
+		"desc": "I still don't understand how they get onto the dating apps.",
 		"image": "res://assets/fish_images/catfish.png",
 		"name": "Catfish",
 		"size": "medium",

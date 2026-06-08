@@ -29,7 +29,7 @@
 	{
 		"biggest_catch": 0,
 		"caught": 0,
-		"desc": "A great ally and protector. Has seen many sinful things. <3",
+		"desc": "<Trans Joke>",
 		"image": "res://assets/fish_images/blahaj.png",
 		"name": "Blahaj",
 		"size": "medium",
@@ -110,7 +110,7 @@
 	{
 		"biggest_catch": 0,
 		"caught": 0,
-		"desc": "",
+		"desc": "You can gather",
 		"image": "res://assets/fish_images/dwarf sperm.png",
 		"name": "Dwarf Sperm Whale",
 		"size": "big",
